@@ -1,14 +1,40 @@
-import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
 import {
-  MdAddShoppingCart,
-  MdShoppingCart,
-  MdRemoveShoppingCart,
-} from "react-icons/md";
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions,
+  Button,
+  CardActionArea,
+} from "@material-ui/core";
+import { default as useStyles } from "./styles";
 
-function ProductCards() {
+function ProductCards({ image, price, description, title, category }) {
+  const classes = useStyles();
+
   return (
-    <Card>
-      <CardMedia></CardMedia>
+    <Card className={classes.root}>
+      <CardMedia
+        component="img"
+        image={image}
+        alt={title}
+        className={classes.media}
+        title={title}
+      />
+
+      <CardContent className={classes.content}>
+        <Typography variant="subtitle1" gutterBottom>
+          {title}
+        </Typography>
+        <Typography variant="subtitle1" color="textPrimary" >
+          {price}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button variant="text" size="small">
+          Add to cart
+        </Button>
+      </CardActions>
     </Card>
   );
 }
