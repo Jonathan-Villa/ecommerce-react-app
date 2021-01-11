@@ -26,11 +26,12 @@ const apiReducer = (state, action) => {
   }
 };
 
-function Home() {
+function Home({totalItems = 0}) {
   const [open, setOpen] = useState(false);
   const [state, dispatch] = useReducer(apiReducer, initialState);
   const classes = useStyles();
-  const gridItem = useRef()
+  const gridItem = useRef();
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -45,31 +46,48 @@ function Home() {
     fetchApi().catch((err) => dispatch({ type: "productsError" }));
   }, []);
 
-  console.log(gridItem)
+  const handleCartItems = (title, price, category) => {
+    const selected = { title, price, category };
+    selected.quantity = 1
+    const copyList = [...cart];
+    copyList.push(selected);
+
+    totalItems = 1
+    setCart(copyList);
+  };
 
   return (
-    <Container className={classes.main} maxWidth="lg">
-      <Grid container>
-        {state.isFetchLoading === true ? (
-          <Backdrop className={classes.backDrop} open={open}>
-            <CircularProgress color="inherit" />
-          </Backdrop>
-        ) : (
-          <Grid ref={gridItem} container  spacing={2}>
-            {state.payload.map((m, key) => (
-              <Grid style={{display:"flex", justifyContent:"center"}} key={key} item xs={12} sm={6} md={4} >
- 
-                <ProductCard
-                  price={m["price"]}
-                  title={m["title"]}
-                  image={m["image"]}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        )}
-      </Grid>
-    </Container>
+
+      <Container className={classes.main} maxWidth="lg">
+        <Grid container>
+          {state.isFetchLoading === true ? (
+            <Backdrop className={classes.backDrop} open={open}>
+              <CircularProgress color="inherit" />
+            </Backdrop>
+          ) : (
+            <Grid ref={gridItem} container spacing={4}>
+              {state.payload.map((m, key) => (
+                <Grid
+                  style={{ display: "flex", justifyContent: "center" }}
+                  key={key}
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                >
+                  <ProductCard
+                    handleAddCart={handleCartItems}
+                    price={m["price"]}
+                    title={m["title"]}
+                    image={m["image"]}
+                    category={m["category"]}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          )}
+        </Grid>
+      </Container>
   );
 }
 

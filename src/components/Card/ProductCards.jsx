@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Card,
   CardMedia,
@@ -9,8 +10,16 @@ import {
 } from "@material-ui/core";
 import { default as useStyles } from "./styles";
 
-function ProductCards({ image, price, description, title, category }) {
+function ProductCards({
+  image,
+  price,
+  description,
+  title,
+  category,
+  handleAddCart,
+}) {
   const classes = useStyles();
+
 
   return (
     <Card className={classes.root}>
@@ -26,12 +35,12 @@ function ProductCards({ image, price, description, title, category }) {
         <Typography variant="subtitle1" gutterBottom>
           {title}
         </Typography>
-        <Typography variant="subtitle1" color="textPrimary" >
+        <Typography variant="subtitle1" color="textPrimary">
           {price}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="text" size="small">
+        <Button variant="text" size="small" onClick={()=>handleAddCart(title,price,category)}>
           Add to cart
         </Button>
       </CardActions>

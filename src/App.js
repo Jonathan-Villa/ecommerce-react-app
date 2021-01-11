@@ -1,24 +1,38 @@
 import "./App.css";
 import Nav from "./components/Nav/Nav";
-import {Route, Switch, } from "react-router-dom"
-import {NavBar, Home} from "./components"
+import { Route, Switch } from "react-router-dom";
+import { NavBar, Home, StoreContext } from "./components";
+import { useState } from "react";
 
 function App() {
+
+  const [updateItems, setItems] = useState(0)
+
+  const handleItems = (totalItems)=> {
+    
+  }
+
   return (
-    <div className="App">
+    <div className="App" >
 
-    <Switch>
-      <Route exact path="/" component={Home}  />
-      <Route path="/cart" /> 
-    </Switch>
-
-
+      <Switch>
+        <Route exact path="/">
+          <Home totalItems={handleItems} />
+        </Route>
+        <Route path="/cart" />
+      </Switch>
 
       <header className="App-header">
-        <NavBar />
+
+
+      <NavBar  />
+  
+        
+
       </header>
 
-      <footer></footer>
+      <footer>
+      </footer>
     </div>
   );
 }
