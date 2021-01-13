@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
   Card,
   CardMedia,
@@ -6,9 +5,9 @@ import {
   Typography,
   CardActions,
   Button,
-  CardActionArea,
 } from "@material-ui/core";
 import { default as useStyles } from "./styles";
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 function ProductCards({
   image,
@@ -19,7 +18,6 @@ function ProductCards({
   handleAddCart,
 }) {
   const classes = useStyles();
-
 
   return (
     <Card className={classes.root}>
@@ -40,7 +38,11 @@ function ProductCards({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="text" size="small" onClick={()=>handleAddCart(title,price,category)}>
+        <Button
+          variant="text"
+          size="small"
+          onClick={() => handleAddCart(title, price, category)}
+        >
           Add to cart
         </Button>
       </CardActions>

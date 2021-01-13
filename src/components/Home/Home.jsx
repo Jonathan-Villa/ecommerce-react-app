@@ -1,93 +1,83 @@
-import { useEffect, useReducer, useState, useRef } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Grid, Container, Backdrop, CircularProgress } from "@material-ui/core";
 import { useStyles } from "./styles";
 import { ProductCard } from "../";
+import { Context } from "../../store/Store";
 
-const initialState = { isFetchLoading: true };
-const apiReducer = (state, action) => {
-  switch (action.type) {
-    case "loadingPoducts":
-      return {
-        isFetchLoading: true,
-      };
-    case "productsSuccesful":
-      return {
-        ...state,
-        isFetchLoading: false,
-        payload: action.payload,
-      };
-    case "productsError":
-      return {
-        isFetchError: true,
-        message: "Failed on loading products",
-      };
-    default:
-      return { state };
-  }
-};
-
-function Home({totalItems = 0}) {
+function Home() {
   const [open, setOpen] = useState(false);
-  const [state, dispatch] = useReducer(apiReducer, initialState);
+  const [state, dispatch] = useContext(Context);
   const classes = useStyles();
-  const gridItem = useRef();
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchApi = async () => {
       setOpen(true);
       const data = await fetch("https://fakestoreapi.com/products");
       const products = await data.json();
+
       return products
-        ? dispatch({ type: "productsSuccesful", payload: products })
-        : dispatch({ type: "loadingProducts" });
+        ? dispatch({ type: "PRODUCTS", payload: products })
+        : dispatch({ type: "LOADING_PRODUCTS" });
     };
 
-    fetchApi().catch((err) => dispatch({ type: "productsError" }));
-  }, []);
+    fetchApi().catch(() => dispatch({ type: "PRODUCTS_ERROR" }));
+  }, [dispatch]);
 
   const handleCartItems = (title, price, category) => {
+    const storeList = [...state.cart];
     const selected = { title, price, category };
-    selected.quantity = 1
-    const copyList = [...cart];
-    copyList.push(selected);
+    selected.quantity = 1;
 
-    totalItems = 1
-    setCart(copyList);
+    // find duplicate items
+    let check = storeList.find((item) => item.title === title);
+    // increment by 1 if duplicate found
+    if (check) {
+      check.quantity += 1;
+    } else {
+      storeList.push(selected);
+    }
+
+    dispatch({
+      cartQuantity: state.cartQuantity + 1,
+      type: "CART",
+      cart: storeList,
+      subTotal: state.subTotal + price,
+    });
   };
 
-  return (
+  console.log(state);
 
-      <Container className={classes.main} maxWidth="lg">
-        <Grid container>
-          {state.isFetchLoading === true ? (
-            <Backdrop className={classes.backDrop} open={open}>
-              <CircularProgress color="inherit" />
-            </Backdrop>
-          ) : (
-            <Grid ref={gridItem} container spacing={4}>
-              {state.payload.map((m, key) => (
-                <Grid
-                  style={{ display: "flex", justifyContent: "center" }}
-                  key={key}
-                  item
-                  xs={12}
-                  sm={6}
-                  md={4}
-                >
-                  <ProductCard
-                    handleAddCart={handleCartItems}
-                    price={m["price"]}
-                    title={m["title"]}
-                    image={m["image"]}
-                    category={m["category"]}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          )}
-        </Grid>
-      </Container>
+  return (
+    <Container className={classes.main} maxWidth="lg">
+      <Grid container>
+        {state.isFetchLoading === true ? (
+          <Backdrop className={classes.backDrop} open={open}>
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        ) : (
+          <Grid container spacing={4}>
+            {state.payload.map((m, key) => (
+              <Grid
+                style={{ display: "flex", justifyContent: "center" }}
+                key={key}
+                item
+                xs={12}
+                sm={6}
+                md={4}
+              >
+                <ProductCard
+                  handleAddCart={handleCartItems}
+                  price={m["price"]}
+                  title={m["title"]}
+                  image={m["image"]}
+                  category={m["category"]}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        )}
+      </Grid>
+    </Container>
   );
 }
 
