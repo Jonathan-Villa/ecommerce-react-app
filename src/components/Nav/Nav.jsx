@@ -12,7 +12,7 @@ import { ShoppingCart } from "@material-ui/icons";
 import { Link, useLocation } from "react-router-dom";
 import useStyles from "./style";
 
-const PrimarySearchAppBar = ({ totalItems }) => {
+const PrimarySearchAppBar = ({ totalItems, cart = [], subTotal, total, cartQuantity}) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const classes = useStyles();
   const location = useLocation();
