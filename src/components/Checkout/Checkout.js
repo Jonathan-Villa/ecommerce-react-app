@@ -1,4 +1,5 @@
 import {
+  Grid,
   Container,
   Paper,
   Stepper,
@@ -60,8 +61,8 @@ function Checkout({ cart, store }) {
     dispatch({ type: "RESET", count: (state.activeStep = 0) });
 
   return (
-    <Container className={classes.root} maxWidth="md">
-      <Paper>
+    <Grid container className={classes.root}>
+      <Paper className={classes.paper}>
         <Stepper activeStep={state.activeStep} alternativeLabel>
           {getSteps.map((m, key) => (
             <Step key={key}>
@@ -79,7 +80,7 @@ function Checkout({ cart, store }) {
               <Button onClick={handleReset}>Reset</Button>
             </div>
           ) : (
-            <div>
+            <Grid item>
               {stepContent(state.activeStep, cart, store)}
               <div>
                 <Button
@@ -97,11 +98,11 @@ function Checkout({ cart, store }) {
                   {state.activeStep === getSteps.length - 1 ? "Finish" : "Next"}
                 </Button>
               </div>
-            </div>
+            </Grid>
           )}
         </div>
       </Paper>
-    </Container>
+    </Grid>
   );
 }
 

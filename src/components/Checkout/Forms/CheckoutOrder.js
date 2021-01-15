@@ -16,7 +16,7 @@ function CheckOutOrder({ cart = [], store }) {
               <Grid
                 item
                 xs={12}
-                sm={6}
+                sm={8}
                 className={classes.productImgTitleWrapper}
               >
                 <img
@@ -42,7 +42,7 @@ function CheckOutOrder({ cart = [], store }) {
               <Grid
                 item
                 xs={12}
-                sm={6}
+                sm={4}
                 className={classes.productCountPriceWrapper}
               >
                 <Typography>{m["quantity"]}</Typography>

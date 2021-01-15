@@ -1,12 +1,16 @@
 import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
-  productRoot: {},
+  productRoot: {
+
+
+  },
   cartProductWrapper: {
     display: "flex",
     justifyContent: "space-between",
+    width:"100%",
 
-    padding:"10px",
+    padding:"24px",
     [theme.breakpoints.down("xs")]: {
 
     },
@@ -31,6 +35,9 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       justifyContent: "space-between",
     },
+  },
+  priceWrapper:{
+    padding:"24px"
   },
 
   txtTitle: {
