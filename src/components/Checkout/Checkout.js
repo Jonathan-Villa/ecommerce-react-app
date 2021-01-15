@@ -7,65 +7,62 @@ import {
   Typography,
   StepLabel,
 } from "@material-ui/core";
-import { useState } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { useStyles } from "./styles";
+import ShoppingCart from "./Forms/ShoppingCart";
+import CheckOutOrder from "./Forms/CheckoutOrder";
 
-const getSteps = [
-  {
-    label: "Proceed Checkout",
-  },
-  {
-    label: "Checkout",
-  },
-];
+const getSteps = [{ label: "Proceed Checkout" }, { label: "Checkout" }];
 
-const shoppingCart = (
-  <div>
-    <h1>ShoppingCart</h1>
-  </div>
-);
+const initalState = { activeStep: 0 };
 
-const checkout = (
-  <div>
-    <h1>Checkout</h1>
-  </div>
-);
-
-const stepContent = (index) => {
-  switch (index) {
-    case 0: {
-      return shoppingCart;
+const stepStateCount = (state, action) => {
+  switch (action.type) {
+    case "INCREMENT": {
+      return { activeStep: action.count + 1 };
     }
-
-    case 1: {
-      return checkout;
+    case "DECREMENT": {
+      return { activeStep: action.count - 1 };
     }
-
+    case "RESET": {
+      return { activeStep: action.count };
+    }
     default:
-      return "Unknown step";
+      return state;
   }
 };
 
-function Checkout() {
+const stepContent = (index, cart, store ) => {
+  switch (index) {
+    case 0: {
+      return <ShoppingCart cart={cart} />;
+    }
+
+    case 1: {
+      return <CheckOutOrder cart={cart} store={store} />;
+    }
+
+    default:
+      return "Unknown Step";
+  }
+};
+
+function Checkout({ cart, store }) {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(0);
+  const [state, dispatch] = useReducer(stepStateCount, initalState);
 
-  const handleNext = () => {
-    setActiveStep((prev) => prev + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prev) => prev - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  // Stepper event handling
+  const handleNext = () =>
+    dispatch({ type: "INCREMENT", count: state.activeStep });
+  const handleBack = () =>
+    dispatch({ type: "DECREMENT", count: state.activeStep });
+  const handleReset = () =>
+    dispatch({ type: "RESET", count: (state.activeStep = 0) });
 
   return (
     <Container className={classes.root} maxWidth="md">
       <Paper>
-        <Stepper activeStep={activeStep} alternativeLabel>
+        <Stepper activeStep={state.activeStep} alternativeLabel>
           {getSteps.map((m, key) => (
             <Step key={key}>
               <StepLabel>{m.label}</StepLabel>
@@ -74,7 +71,7 @@ function Checkout() {
         </Stepper>
 
         <div>
-          {activeStep === getSteps.length ? (
+          {state.activeStep === getSteps.length ? (
             <div>
               <Typography className={classes.instructions}>
                 All steps completed
@@ -83,10 +80,10 @@ function Checkout() {
             </div>
           ) : (
             <div>
-              {stepContent(activeStep)}
+              {stepContent(state.activeStep, cart, store)}
               <div>
                 <Button
-                  disabled={activeStep === 0}
+                  disabled={state.activeStep === 0}
                   onClick={handleBack}
                   className={classes.backButton}
                 >
@@ -97,7 +94,7 @@ function Checkout() {
                   color="primary"
                   onClick={handleNext}
                 >
-                  {activeStep === getSteps.length - 1 ? "Finish" : "Next"}
+                  {state.activeStep === getSteps.length - 1 ? "Finish" : "Next"}
                 </Button>
               </div>
             </div>

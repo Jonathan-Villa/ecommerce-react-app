@@ -25,7 +25,6 @@ const storeReducer = (state, action) => {
         subTotal: action.subTotal,
         total:
           action.subTotal + parseFloat((action.subTotal * 0.065).toFixed()),
-        displayHopper: action.displayHopper
       };
     }
     default:

@@ -23,12 +23,11 @@ function Home() {
     fetchApi().catch(() => dispatch({ type: "PRODUCTS_ERROR" }));
   }, [dispatch]);
 
-  const handleCartItems = (title, price, category, newPlacement ) => {
+  const handleCartItems = (title, price, category, image ) => {
     const storeList = [...state.cart];
-    const selected = { title, price, category };
+    const selected = { title, price, category, image  };
     selected.quantity = 1;
-    
-    console.log(newPlacement)
+  
     // find duplicate items
     let check = storeList.find((item) => item.title === title);
     // increment by 1 if duplicate found
@@ -43,7 +42,6 @@ function Home() {
       type: "CART",
       cart: storeList,
       subTotal: state.subTotal + price,
-      displayHopper: newPlacement
     });
   };
 

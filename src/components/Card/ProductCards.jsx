@@ -7,24 +7,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { default as useStyles } from "./styles";
-import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import {createContext, useReducer} from "react"
-
-const initialState = {onClick(){}}
-
-const productCardReducer = (state, action)=> {
-      switch(action.type){
-        
-        case "ADD_CART":{
-          return {
-            ...state,
-            onClick: action.clickBtn
-          }
-        }
-
-        default:{return state}
-      }
-}
+import {createContext} from "react"
 
 function ProductCards({
   image,
@@ -37,8 +20,6 @@ function ProductCards({
   handlePopperDisplay
 }) {
   const classes = useStyles();
-
-
 
   return (
     <Card className={classes.root}>
@@ -62,7 +43,7 @@ function ProductCards({
         <Button
           variant="text"
           size="small"
-          onClick={(newPlacement) => handleAddCart(title, price, category, newPlacement.currentTarget) }
+          onClick={() => handleAddCart(title, price, category, image) }
         >
           Add to cart
         </Button>
@@ -70,6 +51,4 @@ function ProductCards({
     </Card>
   );
 }
-
-export const CardContext = createContext(initialState)
 export default ProductCards;

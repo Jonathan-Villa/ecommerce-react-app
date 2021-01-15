@@ -7,23 +7,15 @@ import {CheckoutForm} from "./components"
 
 function App() {
   const [state, dispatch] = useContext(Context);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState();
 
   return (
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <Home
-            setAnchorEl={setAnchorEl}
-            setOpenPopper={setOpen}
-            setPlacement={setPlacement}
-            placement={placement}
-          />
+          <Home/>
         </Route>
         <Route path="/cart">
-          <CheckoutForm/>
+          <CheckoutForm cart={state.cart} store={state} />
         </Route>
       </Switch>
 
