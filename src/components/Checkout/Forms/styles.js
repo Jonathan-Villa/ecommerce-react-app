@@ -1,18 +1,18 @@
 import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
-  productRoot: {
-
-
+  productRoot: {},
+  shoppingCartWrapper:{
+    width:"100%",
   },
   cartProductWrapper: {
     display: "flex",
     justifyContent: "space-between",
-    width:"100%",
+    width: "100%",
+    paddingRight: "55px",
 
-    padding:"24px",
-    [theme.breakpoints.down("xs")]: {
-
+    [theme.breakpoints.down("sm")]: {
+      paddingRight:"0px"
     },
   },
   productImage: {
@@ -22,29 +22,28 @@ export const useStyles = makeStyles((theme) => ({
   productImgTitleWrapper: {
     display: "flex",
     justifyContent: "space-between",
-
-    [theme.breakpoints.down("xs")]: {
-
-    },
+    paddingBottom:"40px",
+    [theme.breakpoints.down("xs")]: {},
   },
   productCountPriceWrapper: {
     display: "inline-flex",
-    justifyContent:"space-between",
+    justifyContent: "space-between",
 
+    paddingBottom:"40px",
 
     [theme.breakpoints.down("xs")]: {
       justifyContent: "space-between",
     },
   },
-  priceWrapper:{
-    padding:"24px"
+  priceWrapper: {
+    padding: "24px",
   },
 
   txtTitle: {
-    fontSize:"16px",
-    width:"100%", 
-    height:"fit-content",
-    paddingLeft:"10px",
+    fontSize: "16px",
+    width: "100%",
+    height: "fit-content",
+    paddingLeft: "10px",
 
     [theme.breakpoints.down("xs")]: {
       fontSize: "14px",

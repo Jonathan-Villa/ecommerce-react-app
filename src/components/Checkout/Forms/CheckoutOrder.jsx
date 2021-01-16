@@ -52,12 +52,6 @@ function CheckOutOrder({ cart = [], store }) {
           </Grid>
         ))
       )}
-
-      <div className={classes.priceWrapper}>
-        <Typography>{`Item Count: $${store.cartQuantity}`}</Typography>
-        <Typography>{`Subtotal: $${store.subTotal}`}</Typography>
-        <Typography>{`Total: $${store.total}`}</Typography>
-      </div>
     </div>
   );
 }

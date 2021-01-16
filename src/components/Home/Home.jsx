@@ -3,6 +3,7 @@ import { Grid, Container, Backdrop, CircularProgress } from "@material-ui/core";
 import { useStyles } from "./styles";
 import { ProductCard } from "../";
 import { Context } from "../../store/Store";
+import Tabs from "../Tabs/ProductTabs";
 
 function Home() {
   const [open, setOpen] = useState(false);
@@ -23,11 +24,11 @@ function Home() {
     fetchApi().catch(() => dispatch({ type: "PRODUCTS_ERROR" }));
   }, [dispatch]);
 
-  const handleCartItems = (title, price, category, image ) => {
+  const handleCartItems = (title, price, category, image) => {
     const storeList = [...state.cart];
-    const selected = { title, price, category, image  };
+    const selected = { title, price, category, image };
     selected.quantity = 1;
-  
+
     // find duplicate items
     let check = storeList.find((item) => item.title === title);
     // increment by 1 if duplicate found
@@ -45,13 +46,14 @@ function Home() {
     });
   };
 
-
-
   console.log(state);
 
   return (
     <Container className={classes.main} maxWidth="lg">
-      <Grid container>
+      <Grid className={classes.homeWrapper} container>
+        <Grid item>
+          <Tabs />
+        </Grid>
         {state.isFetchLoading === true ? (
           <Backdrop className={classes.backDrop} open={open}>
             <CircularProgress color="inherit" />

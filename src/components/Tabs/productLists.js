@@ -1,6 +1,6 @@
 
 
- export const items =()=> [
+const items = [
      {
         productLabel:"Men clothing",
         category: "men clothing"
@@ -18,3 +18,5 @@
         category:"electronics"
     },
  ]
+
+export default items
