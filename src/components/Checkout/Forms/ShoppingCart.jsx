@@ -1,29 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Typography,
   Grid,
   Collapse,
   List,
   ListItem,
-
   ListItemText,
 } from "@material-ui/core";
-import { useStyles } from "./styles";
+import useStyles from "./styles";
+import PriceForm from "./PriceForm";
 
 function ShoppingCart({ cart = [], store }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  const handleClick = (item) => {
-    
+  useEffect(() => {}, []);
 
-    
-  
+  const handleClick = () => {
+    setOpen(true);
   };
 
-  const handleClose=()=>{
-    setOpen(false)
-  }
 
   return (
     <Grid comtainer xs={12} className={classes.shoppingCartWrapper}>
@@ -31,7 +27,7 @@ function ShoppingCart({ cart = [], store }) {
         <h1>Cart is Empty!</h1>
       ) : (
         cart.map((m, key) => (
-          <Grid container className={classes.cartProductWrapper}>
+          <Grid container key={key} className={classes.cartProductWrapper}>
             <Grid
               item
               xs={12}
@@ -65,19 +61,21 @@ function ShoppingCart({ cart = [], store }) {
               className={classes.productCountPriceWrapper}
             >
               <List>
-                <ListItem value ={key} button  onClick={()=> handleClick(key)}>
+                <ListItem value={key} button onClick={() => handleClick(key)}>
                   <ListItemText primary={m["quantity"]} />
                 </ListItem>
 
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((m, key) => (
-                      <ListItem button key={key} onClick={handleClose}>
-                        <ListItemText primary={m} />
-                      </ListItem>
-                    ))}
-                  </List>
-                </Collapse>
+                {open ? (
+                  <Collapse in={true} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((m, key) => (
+                        <ListItem button key={key} >
+                          <ListItemText primary={m} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Collapse>
+                ) : null}
               </List>
               <Typography>{`$${m["price"]}`}</Typography>
             </Grid>

@@ -1,14 +1,14 @@
 import { makeStyles } from "@material-ui/core";
 
-export const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "65px",
     display: "flex",
     flexDirection: "column",
-    overflow: "auto",
+    overflow: "none",
     alignItems: "center",
     boxSizing: "border-sizing",
-
+    height:"fit-content",
 
     [theme.breakpoints.down("md")]: {
       
@@ -87,3 +87,6 @@ export const useStyles = makeStyles((theme) => ({
     objectFit: "contain",
   },
 }));
+
+
+export default useStyles

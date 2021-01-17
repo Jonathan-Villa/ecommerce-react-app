@@ -4,6 +4,8 @@ const useStyles = makeStyles((theme) => ({
   productRoot: {},
   shoppingCartWrapper:{
     width:"100%",
+    display:"flex", 
+    flexDirection:"column" 
   },
   cartWrapper: {
     display: "flex",
@@ -15,29 +17,26 @@ const useStyles = makeStyles((theme) => ({
       paddingRight:"0px"
     },
   },
-  productImage: {
-    width: "90px",
-    objectFit: "contain",
-  },
-  productImgTitleWrapper: {
+  leftBodyImgTitleWrapper: {
     display: "flex",
     justifyContent: "space-between",
     alignItems:"start",
     paddingBottom:"40px",
     [theme.breakpoints.down("xs")]: {},
   },
-  productCountPriceWrapper: {
+  leftBodyImg: {
+    width: "90px",
+    objectFit: "contain",
+  },
+  rightBodyPriceWrapper: {
     display: "inline-flex",
     justifyContent: "space-between",
-    alignItems:"start",
+
     paddingBottom:"40px",
 
     [theme.breakpoints.down("xs")]: {
       justifyContent: "space-between",
     },
-  },
-  priceWrapper: {
-    padding: "24px",
   },
 
   txtTitle: {
@@ -51,6 +50,5 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
 
 export default useStyles
