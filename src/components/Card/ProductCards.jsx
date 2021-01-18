@@ -5,19 +5,19 @@ import {
   Typography,
   CardActions,
   Button,
+  CircularProgress,
+
 } from "@material-ui/core";
 import { default as useStyles } from "./styles";
-import {createContext} from "react"
 
 function ProductCards({
   image,
   price,
   description,
+  handleDrawer,
   title,
   category,
   handleAddCart,
-  placement,
-  handlePopperDisplay
 }) {
   const classes = useStyles();
 
@@ -43,7 +43,7 @@ function ProductCards({
         <Button
           variant="text"
           size="small"
-          onClick={() => handleAddCart(title, price, category, image) }
+          onClick={(e) => handleAddCart(title, price, category, image) || handleDrawer() }
         >
           Add to cart
         </Button>

@@ -1,7 +1,12 @@
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import useStyles from "../styles";
 
-function PriceForm({ cartQuantity, subTotal, total }) {
+function PriceForm({
+  cartQuantity,
+  subTotal,
+  total,
+
+}) {
   const classes = useStyles();
   return (
     <div className={classes.priceWrapper}>
@@ -17,6 +22,8 @@ function PriceForm({ cartQuantity, subTotal, total }) {
         <Typography variant="subtitle1">Estimated Total:</Typography>
         <Typography variant="subtitle1">${total}</Typography>
       </div>
+
+      
     </div>
   );
 }

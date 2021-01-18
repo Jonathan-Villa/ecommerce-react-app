@@ -10,7 +10,35 @@ const storeReducer = (state, action) => {
       return {
         ...state,
         isFetchLoading: false,
-        payload: action.payload,
+
+        allProduct: {
+          index: "1",
+          items: action.payload,
+        },
+        men: {
+          index: "2",
+          items: action.payload.filter(
+            (item) => "men clothing" === item["category"]
+          ),
+        },
+        women: {
+          index: "3",
+          items: action.payload.filter(
+            (item) => "women clothing" === item["category"]
+          ),
+        },
+        electronics: {
+          index: "4",
+          items: action.payload.filter(
+            (item) => "electronics" === item["category"]
+          ),
+        },
+        jewelery: {
+          index: "5",
+          items: action.payload.filter(
+            (item) => "jewelery" === item["category"]
+          ),
+        },
       };
     case "PRODUCTS_ERROR":
       return {

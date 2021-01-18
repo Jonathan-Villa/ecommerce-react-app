@@ -1,13 +1,22 @@
 import { useEffect, useState, useContext } from "react";
-import { Grid, Container, Backdrop, CircularProgress } from "@material-ui/core";
+import {
+  Grid,
+  Container,
+  Backdrop,
+  CircularProgress,
+  Tab,
+} from "@material-ui/core";
 import { useStyles } from "./styles";
 import { ProductCard } from "../";
 import { Context } from "../../store/Store";
 import Tabs from "../Tabs/ProductTabs";
+import DrawerCart from "../Drawer/DrawerCart"
 
 function Home() {
   const [open, setOpen] = useState(false);
   const [state, dispatch] = useContext(Context);
+  const [value, setValue] = useState("1");
+  const [openDrawer, setOpenDrawer] = useState(false)
   const classes = useStyles();
 
   useEffect(() => {
@@ -46,41 +55,34 @@ function Home() {
     });
   };
 
-  console.log(state);
+  const handleDrawerToggle = ()=>{
+    setOpenDrawer(!openDrawer)
+  }
+  
 
   return (
     <Container className={classes.main} maxWidth="lg">
       <Grid className={classes.homeWrapper} container>
-        <Grid item>
-          <Tabs />
-        </Grid>
         {state.isFetchLoading === true ? (
           <Backdrop className={classes.backDrop} open={open}>
             <CircularProgress color="inherit" />
           </Backdrop>
         ) : (
-          <Grid container spacing={4}>
-            {state.payload.map((m, key) => (
-              <Grid
-                style={{ display: "flex", justifyContent: "center" }}
-                key={key}
-                item
-                xs={12}
-                sm={6}
-                md={4}
-              >
-                <ProductCard
-                  handleAddCart={handleCartItems}
-                  price={m["price"]}
-                  title={m["title"]}
-                  image={m["image"]}
-                  category={m["category"]}
-                />
-              </Grid>
-            ))}
-          </Grid>
+          <Tabs
+            value={value}
+            setValue={setValue}
+            handleDrawerToggle={handleDrawerToggle}
+            handleCartItems={handleCartItems}
+            menProduct={state.men.items}
+            womenProduct={state.women.items}
+            jewelery={state.jewelery.items}
+            electronics={state.electronics.items}
+            allProduct={state.allProduct.items}
+          />
         )}
       </Grid>
+
+      <DrawerCart open={openDrawer} items={state.cart} handleClose={handleDrawerToggle} />
     </Container>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography, Grid, Button  } from "@material-ui/core";
 import useStyles from "./stylesCheck";
 import ContactAccordion from "../../Accordion/AccordionPanels/ContactPanel/ContactPanel";
 import PriceForm from "./PriceForm"
@@ -48,11 +48,6 @@ function CheckOutOrder({ cart = [], store }) {
         ))
       )}
 
-      <PriceForm
-        cartQuantity={store.cartQuantity}
-        subTotal={store.subTotal}
-        total={store.total}
-      />
     </Grid>
   );
 }
