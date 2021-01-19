@@ -2,8 +2,8 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   productRoot: {},
-  shoppingCartWrapper:{
-    width:"100%",
+  shoppingCartWrapper: {
+    width: "100%",
   },
   cartWrapper: {
     display: "flex",
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "55px",
 
     [theme.breakpoints.down("sm")]: {
-      paddingRight:"0px"
+      paddingRight: "0px",
     },
   },
   productImage: {
@@ -22,15 +22,15 @@ const useStyles = makeStyles((theme) => ({
   productImgTitleWrapper: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems:"start",
-    paddingBottom:"40px",
+    alignItems: "start",
+    paddingBottom: "40px",
     [theme.breakpoints.down("xs")]: {},
   },
   productCountPriceWrapper: {
     display: "inline-flex",
     justifyContent: "space-between",
-    alignItems:"start",
-    paddingBottom:"40px",
+    alignItems: "start",
+    paddingBottom: "40px",
 
     [theme.breakpoints.down("xs")]: {
       justifyContent: "space-between",
@@ -52,5 +52,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-export default useStyles
+export default useStyles;

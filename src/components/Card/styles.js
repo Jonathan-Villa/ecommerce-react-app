@@ -1,25 +1,67 @@
-import {makeStyles} from "@material-ui/core"
+import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(()=> ({
-    root:{
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        maxHeight:"400px",
-        maxWidth:345
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+    width: "100%",
+
+    [theme.breakpoints.down("xs")]: {},
+  },
+
+  media: {
+    margin: "auto",
+    height: "200px",
+    maxWidth: "200px",
+    boxSizing: "border-box",
+    padding: 20,
+    objectFit: "contain",
+
+    [theme.breakpoints.down("sm")]: {
+      width: "140px",
     },
-    media:{
-        margin:"auto",
-        width: "70%",
-        height: "170px",
-        objectFit: "contain",
-        paddingTop: "8%",
+
+    [theme.breakpoints.down("xs")]: {
+      width: "120px",
     },
-    content:{
-        flexGrow:1
-    }
-}))
+  },
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+
+    [theme.breakpoints.down("xs")]: {},
+  },
+  txtTitle: {
+    flex: 1,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "14px",
+    },
+  },
+
+  txtPrice: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "14px",
+    },
+  },
+
+  btnAddCart: {
+    width: "100%",
+    backgroundColor:"#000",
+    color:"#ffff",
 
 
+    "&:hover":{
+        color:"#000",
+        backgroundColor:"#e5e5e5"
+    }, 
 
-export default useStyles
+    [theme.breakpoints.down("xs")]: {
+      fontSize: ".75em",
+    },
+  },
+}));
+
+export default useStyles;

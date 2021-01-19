@@ -5,8 +5,6 @@ import {
   Typography,
   CardActions,
   Button,
-  CircularProgress,
-
 } from "@material-ui/core";
 import { default as useStyles } from "./styles";
 
@@ -22,8 +20,9 @@ function ProductCards({
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
-      <CardMedia
+    <Card elevation={0} className={classes.root}>
+
+     <CardMedia
         component="img"
         image={image}
         alt={title}
@@ -31,16 +30,18 @@ function ProductCards({
         title={title}
       />
 
+
       <CardContent className={classes.content}>
-        <Typography variant="subtitle1" gutterBottom>
+        <Typography  className={classes.txtTitle} variant="subtitle1" gutterBottom>
           {title}
         </Typography>
-        <Typography variant="subtitle1" color="textPrimary">
+        <Typography  className={classes.txtPrice} variant="subtitle1" color="textPrimary">
           {`$${price}`}
         </Typography>
       </CardContent>
       <CardActions>
         <Button
+          className={classes.btnAddCart}
           variant="text"
           size="small"
           onClick={(e) => handleAddCart(title, price, category, image) || handleDrawer() }

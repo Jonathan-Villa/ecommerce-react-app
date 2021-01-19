@@ -1,22 +1,15 @@
 import { useEffect, useState, useContext } from "react";
-import {
-  Grid,
-  Container,
-  Backdrop,
-  CircularProgress,
-  Tab,
-} from "@material-ui/core";
+import { Grid, Container, Backdrop, CircularProgress } from "@material-ui/core";
 import { useStyles } from "./styles";
-import { ProductCard } from "../";
 import { Context } from "../../store/Store";
 import Tabs from "../Tabs/ProductTabs";
-import DrawerCart from "../Drawer/DrawerCart"
+import DrawerCart from "../Drawer/DrawerCart";
 
 function Home() {
   const [open, setOpen] = useState(false);
   const [state, dispatch] = useContext(Context);
   const [value, setValue] = useState("1");
-  const [openDrawer, setOpenDrawer] = useState(false)
+  const [openDrawer, setOpenDrawer] = useState(false);
   const classes = useStyles();
 
   useEffect(() => {
@@ -55,10 +48,9 @@ function Home() {
     });
   };
 
-  const handleDrawerToggle = ()=>{
-    setOpenDrawer(!openDrawer)
-  }
-  
+  const handleDrawerToggle = () => {
+    setOpenDrawer(!openDrawer);
+  };
 
   return (
     <Container className={classes.main} maxWidth="lg">
@@ -82,7 +74,11 @@ function Home() {
         )}
       </Grid>
 
-      <DrawerCart open={openDrawer} items={state.cart} handleClose={handleDrawerToggle} />
+      <DrawerCart
+        open={openDrawer}
+        items={state.cart}
+        handleClose={handleDrawerToggle}
+      />
     </Container>
   );
 }

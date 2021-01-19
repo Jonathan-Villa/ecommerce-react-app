@@ -52,7 +52,7 @@ const storeReducer = (state, action) => {
         cart: [...action.cart],
         subTotal: action.subTotal,
         total:
-          action.subTotal + parseFloat((action.subTotal * 0.065).toFixed()),
+          action.subTotal + parseFloat((action.subTotal * 0.065).toFixed(2)),
       };
     }
     default:

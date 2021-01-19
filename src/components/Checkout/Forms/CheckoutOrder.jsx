@@ -1,14 +1,13 @@
 import React from "react";
-import { Typography, Grid, Button  } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import useStyles from "./stylesCheck";
-import ContactAccordion from "../../Accordion/AccordionPanels/ContactPanel/ContactPanel";
-import PriceForm from "./PriceForm"
+
 
 function CheckOutOrder({ cart = [], store }) {
   const classes = useStyles();
 
   return (
-    <Grid xs={12} container className={classes.shoppingCartWrapper}>
+    <Grid xs={12} lg={12} container className={classes.shoppingCartWrapper}>
       {!Array.isArray(cart) || !cart.length ? (
         <h1>No items have been selected</h1>
       ) : (
@@ -17,7 +16,7 @@ function CheckOutOrder({ cart = [], store }) {
             <Grid
               item
               xs={12}
-              sm={8}
+              sm={12}
               className={classes.leftBodyImgTitleWrapper}
             >
               <img
@@ -34,20 +33,20 @@ function CheckOutOrder({ cart = [], store }) {
                   textAlign: "start",
                 }}
               >
-                <Typography className={classes.txtTitle}>
+                <Typography className={classes.txtProductDetail}>
                   {m["title"]}
                 </Typography>
+                <Typography className={classes.txtProductDetail}>
+                  {`Quantity: ${m["quantity"]}`}
+                </Typography>
+                <Typography
+                  className={classes.txtProductDetail}
+                >{`$${m["price"]}`}</Typography>
               </div>
-            </Grid>
-
-            <Grid item xs={12} sm={4} className={classes.rightBodyPriceWrapper}>
-              <Typography>{m["quantity"]}</Typography>
-              <Typography>{`$${m["price"]}`}</Typography>
             </Grid>
           </Grid>
         ))
       )}
-
     </Grid>
   );
 }

@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: "border-sizing",
     height:"fit-content",
 
-    [theme.breakpoints.down("md")]: {
-      
+    [theme.breakpoints.down("sm")]: {
+
     },
   },
   mainWrapperCheckOut: {
@@ -42,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
 
     [theme.breakpoints.down("sm")]: {
-      display:"inline-block"
-    
+      display:"inline-block",
+      marginTop:"55px",
     },
   },
 
@@ -51,9 +51,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     paddingLeft: "55px",
+    
+    
 
     [theme.breakpoints.down("sm")]: {
-      paddingLeft: "0px"
+      paddingLeft: "0px",
+      marginTop:"55px",
     },
   },
   btnWrapper: {
@@ -79,9 +82,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
-  shoppingCartWrapper: {
-    display: "flex",
-  },
+
   productImage: {
     width: "90px",
     objectFit: "contain",

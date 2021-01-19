@@ -8,7 +8,6 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import useStyles from "./styles";
-import PriceForm from "./PriceForm";
 
 function ShoppingCart({ cart = [], store }) {
   const classes = useStyles();
@@ -19,7 +18,6 @@ function ShoppingCart({ cart = [], store }) {
   const handleClick = () => {
     setOpen(true);
   };
-
 
   return (
     <Grid comtainer xs={12} className={classes.shoppingCartWrapper}>
@@ -32,6 +30,7 @@ function ShoppingCart({ cart = [], store }) {
               item
               xs={12}
               sm={8}
+              lg={7}
               className={classes.productImgTitleWrapper}
             >
               <img
@@ -69,7 +68,7 @@ function ShoppingCart({ cart = [], store }) {
                   <Collapse in={true} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((m, key) => (
-                        <ListItem button key={key} >
+                        <ListItem button key={key}>
                           <ListItemText primary={m} />
                         </ListItem>
                       ))}

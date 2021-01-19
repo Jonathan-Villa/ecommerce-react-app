@@ -12,7 +12,10 @@ import { ShoppingCart } from "@material-ui/icons";
 import { Link, useLocation } from "react-router-dom";
 import useStyles from "./style";
 
-const PrimarySearchAppBar = ({ totalItems, cart = [], subTotal, total, cartQuantity}) => {
+const PrimarySearchAppBar = ({
+  totalItems,
+
+}) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const classes = useStyles();
   const location = useLocation();
@@ -51,7 +54,7 @@ const PrimarySearchAppBar = ({ totalItems, cart = [], subTotal, total, cartQuant
 
   return (
     <>
-      <AppBar position="fixed" className={classes.appBar}  color="inherit">
+      <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
           <Typography
             component={Link}
