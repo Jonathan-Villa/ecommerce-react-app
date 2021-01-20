@@ -21,8 +21,7 @@ function ProductCards({
 
   return (
     <Card elevation={0} className={classes.root}>
-
-     <CardMedia
+      <CardMedia
         component="img"
         image={image}
         alt={title}
@@ -30,12 +29,20 @@ function ProductCards({
         title={title}
       />
 
-
       <CardContent className={classes.content}>
-        <Typography  className={classes.txtTitle} variant="subtitle1" gutterBottom>
+        <Typography
+          
+          className={classes.txtTitle}
+          variant="subtitle1"
+          gutterBottom
+        >
           {title}
         </Typography>
-        <Typography  className={classes.txtPrice} variant="subtitle1" color="textPrimary">
+        <Typography
+          className={classes.txtPrice}
+          variant="subtitle1"
+          color="textPrimary"
+        >
           {`$${price}`}
         </Typography>
       </CardContent>
@@ -44,7 +51,9 @@ function ProductCards({
           className={classes.btnAddCart}
           variant="text"
           size="small"
-          onClick={(e) => handleAddCart(title, price, category, image) || handleDrawer() }
+          onClick={(e) =>
+            handleAddCart(title, price, category, image) || handleDrawer()
+          }
         >
           Add to cart
         </Button>

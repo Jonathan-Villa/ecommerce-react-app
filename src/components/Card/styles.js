@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {},
   },
   txtTitle: {
+    fontFamily:'Montserrat, sans-serif',
     flex: 1,
     [theme.breakpoints.down("xs")]: {
       fontSize: "14px",
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   txtPrice: {
+    fontFamily:'Montserrat, sans-serif',
     [theme.breakpoints.down("xs")]: {
       fontSize: "14px",
     },
@@ -49,14 +51,13 @@ const useStyles = makeStyles((theme) => ({
 
   btnAddCart: {
     width: "100%",
-    backgroundColor:"#000",
-    color:"#ffff",
+    backgroundColor: "#000",
+    color: "#ffff",
 
-
-    "&:hover":{
-        color:"#000",
-        backgroundColor:"#e5e5e5"
-    }, 
+    "&:hover": {
+      color: "#000",
+      backgroundColor: "#e5e5e5",
+    },
 
     [theme.breakpoints.down("xs")]: {
       fontSize: ".75em",

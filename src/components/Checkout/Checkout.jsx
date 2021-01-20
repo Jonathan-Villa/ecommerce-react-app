@@ -12,7 +12,7 @@ import ShoppingCart from "./Forms/ShoppingCart";
 import CheckOutOrder from "./Forms/CheckoutOrder";
 import PriceForm from "./Forms/PriceForm";
 import BillingForm from "./Forms/BillingForm";
-const getSteps = [{ label: "Proceed Checkout" }, { label: "Checkout" }];
+const getSteps = [{ label: "Shopping Bag" }, { label: "Checkout" }];
 
 const initalState = { activeStep: 0 };
 
@@ -76,7 +76,7 @@ function Checkout({ cart, store }) {
         {state.activeStep === getSteps.length ? (
           <Grid>
             <Typography className={classes.instructions}>
-              All steps completed
+              Comming soon!
             </Typography>
             <Button onClick={handleReset}>Reset</Button>
           </Grid>
@@ -85,10 +85,12 @@ function Checkout({ cart, store }) {
             {state.activeStep === 0 ? (
               stepContent(state.activeStep, cart, store)
             ) : state.activeStep === 1 ? (
-              <BillingForm />
+              <Grid item sm={12} md={9} lg={9}>
+                <BillingForm />
+              </Grid>
             ) : null}
 
-            <Grid item xs={12} sm={12} md={9} lg={7}>
+            <Grid item xs={12} sm={12} md={7} lg={7}>
               <Grid item lg={12} className={classes.paperBtnWrapper}>
                 <PriceForm
                   cartQuantity={store.cartQuantity}
@@ -117,7 +119,7 @@ function Checkout({ cart, store }) {
                     onClick={handleNext}
                   >
                     {state.activeStep === getSteps.length - 1
-                      ? "Finish"
+                      ? "Submit"
                       : "Checkout"}
                   </Button>
                 </div>

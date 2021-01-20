@@ -40,7 +40,12 @@ const useStyles = makeStyles((theme) => ({
     padding: "24px",
   },
 
+  txtQuantity: {
+    fontFamily: "Montserrat, sans-serif",
+  },
+
   txtTitle: {
+    fontFamily: "Montserrat, sans-serif",
     fontSize: "16px",
     width: "100%",
     height: "fit-content",

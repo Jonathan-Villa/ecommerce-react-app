@@ -1,6 +1,5 @@
-import { useRef } from "react";
 import { TabPanel, TabList, TabContext } from "@material-ui/lab";
-import { Tab, Slide, Grid, Toolbar, Container, Fade } from "@material-ui/core";
+import { Tab, Grid, Toolbar, Fade } from "@material-ui/core";
 import ProductCard from "../Card/ProductCards";
 import useStyles from "./styles";
 
@@ -25,6 +24,8 @@ function ProductTabs({
     <Toolbar className={classes.root}>
       <TabContext value={value}>
         <TabList
+        indicatorColor="primary"
+        textColor="primary"
           scrollButtons="on"
           variant="scrollable"
           className={classes.tabList}
@@ -40,7 +41,7 @@ function ProductTabs({
         </TabList>
 
         <TabPanel className={classes.tabPanel} value={"1"}>
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             {allProduct.map((m, key) => (
               <Fade key={key} in={true} timeout={{ enter: 1300, exit: 1000 }}>
                 <Grid

@@ -4,22 +4,36 @@ import useStyles from "../styles";
 function PriceForm({ cartQuantity, subTotal, total }) {
   const classes = useStyles();
   return (
-    <div className={classes.priceWrapper}>
+    <div className={classes.orderSummaryWrapper}>
       <div>
-        <Typography variant="h5">Order Summary</Typography>
+        <Typography className={classes.txtOrderSummary} variant="h5">
+          Order Summary
+        </Typography>
       </div>
       <Divider variant="fullWidth" />
       <div className={classes.itemCountWrapper}>
-        <Typography variant="subtitle1">Item Count:</Typography>
-        <Typography variant="subtitle1">{cartQuantity}</Typography>
+        <Typography className={classes.txtOrderSummary} variant="subtitle1">
+          Item Count:
+        </Typography>
+        <Typography className={classes.txtOrderSummary} variant="subtitle1">
+          {cartQuantity}
+        </Typography>
       </div>
       <div className={classes.itemCountWrapper}>
-        <Typography variant="subtitle1">Subtotal:</Typography>
-        <Typography variant="subtitle1">${subTotal}</Typography>
+        <Typography className={classes.txtOrderSummary} variant="subtitle1">
+          Subtotal:
+        </Typography>
+        <Typography className={classes.txtOrderSummary} variant="subtitle1">
+          ${subTotal}
+        </Typography>
       </div>
       <div className={classes.itemCountWrapper}>
-        <Typography variant="subtitle1">Estimated Total:</Typography>
-        <Typography variant="subtitle1">${total}</Typography>
+        <Typography className={classes.txtOrderSummary} variant="subtitle1">
+          Estimated Total:
+        </Typography>
+        <Typography className={classes.txtOrderSummary} variant="subtitle1">
+          ${total}
+        </Typography>
       </div>
     </div>
   );

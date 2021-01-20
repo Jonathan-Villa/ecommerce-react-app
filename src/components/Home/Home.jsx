@@ -27,23 +27,23 @@ function Home() {
   }, [dispatch]);
 
   const handleCartItems = (title, price, category, image) => {
-    const storeList = [...state.cart];
+    const copyList = [...state.cart]; 
     const selected = { title, price, category, image };
     selected.quantity = 1;
 
     // find duplicate items
-    let check = storeList.find((item) => item.title === title);
+    let check = copyList.find((item) => item.title === title);
     // increment by 1 if duplicate found
     if (check) {
       check.quantity += 1;
     } else {
-      storeList.push(selected);
+      copyList.push(selected);
     }
 
     dispatch({
       cartQuantity: state.cartQuantity + 1,
       type: "CART",
-      cart: storeList,
+      cart: copyList,
       subTotal: state.subTotal + price,
     });
   };

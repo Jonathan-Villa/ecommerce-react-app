@@ -16,14 +16,17 @@ const useStyles = makeStyles((theme) => ({
   tabList: {
     paddingTop: "16px",
     paddingBottom: "16px",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       width: "100%",
-      paddingBottom: "10px",
     },
   },
-  tab: {
-    [theme.breakpoints.down("xs")]: {},
-  },
+  tab:{
+    
+    "&:hover":{
+      opacity:"1",
+      color:"#ced4da"
+    }
+  }, 
 
   tabPanel: {
     width: "100%",

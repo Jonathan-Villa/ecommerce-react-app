@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   txtProductDetail: {
+    fontFamily:'Montserrat, sans-serif',
     fontSize: "16px",
     width: "100%",
     height: "fit-content",
