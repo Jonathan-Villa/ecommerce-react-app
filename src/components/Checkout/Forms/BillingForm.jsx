@@ -126,7 +126,7 @@ function BillingForm() {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid xs={12} className={classes.txtGroupWrapper}>
+            <Grid item xs={12} className={classes.txtGroupWrapper}>
               <TextField
                 size="small"
                 required

@@ -5,7 +5,7 @@ function ShoppingCart({ cart = [], store }) {
   const classes = useStyles();
 
   return (
-    <Grid comtainer xs={12} className={classes.shoppingCartWrapper}>
+    <Grid comtainer  className={classes.shoppingCartWrapper}>
       {!Array.isArray(cart) || !cart.length ? (
         <>
           <Typography variant="h5">Cart is Empty!</Typography>

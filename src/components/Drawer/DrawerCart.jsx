@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Drawer,
   List,
@@ -32,7 +32,7 @@ function DrawerCart({ items, open, handleClose }) {
         <Divider variant="fullWidth" />
         <List className={classes.listWrapper}>
           {items.map((m, key) => (
-            <>
+            <div key={key}>
               <ListItem key={key} className={classes.listItem}>
                 <Grid container className={classes.gridContainer}>
                   <Grid className={classes.gridImgWrapper} item xs={3} lg={3}>
@@ -59,7 +59,7 @@ function DrawerCart({ items, open, handleClose }) {
               </ListItem>
 
               <Divider variant="fullWidth" component="li" />
-            </>
+            </div>
           ))}
         </List>
 

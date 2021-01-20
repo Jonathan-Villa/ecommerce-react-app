@@ -1,12 +1,12 @@
 import React from "react";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography, Grid, Container } from "@material-ui/core";
 import useStyles from "./stylesCheck";
 
 function CheckOutOrder({ cart = [], store }) {
   const classes = useStyles();
 
   return (
-    <Grid xs={12} lg={12} container className={classes.shoppingCartWrapper}>
+    <Container className={classes.shoppingCartWrapper}>
       {!Array.isArray(cart) || !cart.length ? (
         <Typography variant="h5">Shopping bag is empty!</Typography>
       ) : (
@@ -46,7 +46,7 @@ function CheckOutOrder({ cart = [], store }) {
           </Grid>
         ))
       )}
-    </Grid>
+    </Container>
   );
 }
 

@@ -4,6 +4,7 @@ import {
   Step,
   Button,
   Typography,
+  Container,
   StepLabel,
 } from "@material-ui/core";
 import { useReducer } from "react";
@@ -53,16 +54,8 @@ function Checkout({ cart, store }) {
     dispatch({ type: "RESET", count: (state.activeStep = 0) });
 
   return (
-    <Grid container={true} className={classes.root}>
-      <Grid
-        container={true}
-        xs={12}
-        sm={11}
-        md={11}
-        lg={8}
-        direction="column"
-        className={classes.mainWrapperCheckOut}
-      >
+    <Grid container className={classes.root}>
+      <Container className={classes.mainWrapperCheckOut}>
         <Grid xs={12} item>
           <Stepper activeStep={state.activeStep} alternativeLabel>
             {getSteps.map((m, key) => (
@@ -130,7 +123,7 @@ function Checkout({ cart, store }) {
             </Grid>
           </Grid>
         )}
-      </Grid>
+      </Container>
     </Grid>
   );
 }
