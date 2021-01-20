@@ -1,3 +1,5 @@
+## Live Demo https://jv-ecommerce-v1.azurewebsites.net/
+
 ## Overview
 This is ecommerce application will be a version 1 of 2 -- 1 handling everything in memory -- version 2 will be with Next.js. This version of the application I wanted to experiment solely with memory to get an adjust of the functionality. The only tools that were used in this application were primarily react hooks and Material-UI. In version 2, the tools that I plan to use are Next.js for SSR, the database portion will be some sort of relational database, and Redux for state management.
 
