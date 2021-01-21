@@ -1,5 +1,5 @@
 import { useReducer, createContext, useState } from "react";
-import { Grid, TextField, Paper, Typography, Divider } from "@material-ui/core";
+import { Grid, TextField, Button, Typography, Divider } from "@material-ui/core";
 import useStyles from "./stylesBilling";
 
 const initalState = {};
@@ -46,8 +46,7 @@ function BillingForm() {
   };
 
   return (
-    <BillingContext.Provider value={[state, dispatch]}>
-      <Paper className={classes.root} elevation={0}>
+      <form className={classes.root} elevation={0}>
         <div className={classes.headingWrapper}>
           <Typography variant="h5">Checkout</Typography>
           <Divider variant="fullWidth" />
@@ -172,7 +171,7 @@ function BillingForm() {
             required
             onChange={handleChange}
             value={input.email}
-            className={classes.txtField}
+            className={classes.txtEmail}
             fullWidth
             label="Email Address"
             type="email"
@@ -185,7 +184,7 @@ function BillingForm() {
             required
             onChange={handleChange}
             value={input.phoneNum}
-            className={classes.txtField}
+            className={classes.txtPhoneNum}
             fullWidth
             label="Phone Number"
             type="number"
@@ -194,8 +193,9 @@ function BillingForm() {
             name="phoneNum"
           />
         </Grid>
-      </Paper>
-    </BillingContext.Provider>
+
+        <Button className={classes.btnReview} variant='contained' type="POST" color="default">Review</Button>
+      </form>
   );
 }
 

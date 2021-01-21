@@ -7,43 +7,36 @@ function CheckOutOrder({ cart = [], store }) {
 
   return (
     <Container className={classes.shoppingCartWrapper}>
+
       {!Array.isArray(cart) || !cart.length ? (
         <Typography variant="h5">Shopping bag is empty!</Typography>
       ) : (
         cart.map((m, key) => (
-          <Grid container key={key} className={classes.cartWrapper}>
+          <Container key={key} className={classes.cartWrapper}>
             <Grid
               item
               xs={12}
               sm={12}
-              className={classes.leftBodyImgTitleWrapper}
+              className={classes.productWrapper}
             >
               <img
-                className={classes.leftBodyImg}
+                className={classes.productImg}
                 src={m["image"]}
                 alt={m["title"]}
               />
-              <div
-                style={{
-                  height: "fit-content",
-                  paddingLeft: "20px",
-                  paddingRight: "20px",
-                  width: "100%",
-                  textAlign: "start",
-                }}
-              >
-                <Typography className={classes.txtProductDetail}>
+              <Grid className={classes.txtProductWrapper} item={true} xs={12}>
+                <span className={classes.txtProductDetail}>
                   {m["title"]}
-                </Typography>
-                <Typography className={classes.txtProductDetail}>
+                </span>
+                <span className={classes.txtProductDetail}>
                   {`Quantity: ${m["quantity"]}`}
-                </Typography>
-                <Typography
+                </span>
+                <span
                   className={classes.txtProductDetail}
-                >{`$${m["price"]}`}</Typography>
-              </div>
+                >{`$${m["price"]}`}</span>
+              </Grid>
             </Grid>
-          </Grid>
+          </Container>
         ))
       )}
     </Container>

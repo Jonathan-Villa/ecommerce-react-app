@@ -48,13 +48,11 @@ function Checkout({ cart, store }) {
   // Stepper event handling
   const handleNext = () =>
     dispatch({ type: "INCREMENT", count: state.activeStep });
-  const handleBack = () =>
-    dispatch({ type: "DECREMENT", count: state.activeStep });
   const handleReset = () =>
     dispatch({ type: "RESET", count: (state.activeStep = 0) });
 
   return (
-    <Grid container className={classes.root}>
+    <Container className={classes.root}>
       <Container className={classes.mainWrapperCheckOut}>
         <Grid xs={12} item>
           <Stepper activeStep={state.activeStep} alternativeLabel>
@@ -74,16 +72,18 @@ function Checkout({ cart, store }) {
             <Button onClick={handleReset}>Reset</Button>
           </Grid>
         ) : (
-          <Grid item xs={12} className={classes.displayItemsWrapper}>
+          <Container disableGutters className={classes.displayItemsWrapper}>
             {state.activeStep === 0 ? (
-              stepContent(state.activeStep, cart, store)
+              <Grid md={10} lg={9}>
+                {stepContent(state.activeStep, cart, store)}
+              </Grid>
             ) : state.activeStep === 1 ? (
-              <Grid item sm={12} md={9} lg={9}>
+              <Grid item sm={12} md={10} lg={9}>
                 <BillingForm />
               </Grid>
             ) : null}
 
-            <Grid item xs={12} sm={12} md={7} lg={7}>
+            <Grid item xs={12} sm={12} md={8} lg={9}>
               <Grid item lg={12} className={classes.paperBtnWrapper}>
                 <PriceForm
                   cartQuantity={store.cartQuantity}
@@ -91,40 +91,26 @@ function Checkout({ cart, store }) {
                   total={store.total.toFixed(2)}
                 />
                 <div className={classes.btnWrapper}>
-                  <Button
-                    fullWidth
-                    style={
-                      state.activeStep === 0
-                        ? { display: "none" }
-                        : { display: "block" }
-                    }
-                    disabled={state.activeStep === 0}
-                    onClick={handleBack}
-                    className={classes.backButton}
-                  >
-                    Back
-                  </Button>
-
-                  <Button
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                  >
-                    {state.activeStep === getSteps.length - 1
-                      ? "Submit"
-                      : "Checkout"}
-                  </Button>
+                  {state.activeStep === getSteps.length - 1 ? null : (
+                    <Button
+                      fullWidth
+                      variant="contained"
+                      color="primary"
+                      onClick={handleNext}
+                    >
+                      Continue
+                    </Button>
+                  )}
                 </div>
               </Grid>
               {state.activeStep === 1
                 ? stepContent(state.activeStep, cart, store)
                 : null}
             </Grid>
-          </Grid>
+          </Container>
         )}
       </Container>
-    </Grid>
+    </Container>
   );
 }
 

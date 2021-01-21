@@ -4,57 +4,45 @@ const useStyles = makeStyles((theme) => ({
   productRoot: {},
   shoppingCartWrapper: {
     width: "100%",
+    [theme.breakpoints.down("sm")]: {}
   },
-  cartWrapper: {
-    display: "flex",
-    justifyContent: "space-between",
-    width: "100%",
-    paddingRight: "55px",
-
-    [theme.breakpoints.down("sm")]: {
-      paddingRight: "0px",
-    },
+  cartProductWrapper: {
+    marginTop: "20px",
+    marginBottom: "20px",
+    [theme.breakpoints.down("md")]: {}
+  },
+  shoppingBagHeading: {
+    fontFamily: "Montserrat, sans-serif"
   },
   productImage: {
     width: "90px",
-    objectFit: "contain",
+    objectFit: "contain"
   },
   productImgTitleWrapper: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "start",
     paddingBottom: "40px",
-    [theme.breakpoints.down("xs")]: {},
+    [theme.breakpoints.down("xs")]: {}
   },
-  productCountPriceWrapper: {
-    display: "inline-flex",
-    justifyContent: "space-between",
-    alignItems: "start",
-    paddingBottom: "40px",
-
-    [theme.breakpoints.down("xs")]: {
-      justifyContent: "space-between",
-    },
+  productTxtWrapper: {
+    paddingLeft: "20px",
+    display: "flex",
+    flexDirection: "column",
+    [theme.breakpoints.down("sm")]: {}
   },
-  priceWrapper: {
-    padding: "24px",
-  },
-
-  txtQuantity: {
-    fontFamily: "Montserrat, sans-serif",
-  },
-
-  txtTitle: {
-    fontFamily: "Montserrat, sans-serif",
-    fontSize: "16px",
+  txtProductDetail: {
     width: "100%",
-    height: "fit-content",
-    paddingLeft: "10px",
-
-    [theme.breakpoints.down("xs")]: {
+    fontSize: "16px",
+    paddingBottom: "10px",
+    fontFamily: "Montserrat, sans-serif",
+    lineHeight: "normal",
+    height: "auto",
+    [theme.breakpoints.down("sm")]: {
       fontSize: "14px",
-    },
-  },
+      textAlign: "right"
+    }
+  }
 }));
 
 export default useStyles;

@@ -1,11 +1,20 @@
-import { Typography, Grid, Divider } from "@material-ui/core";
+import { Typography, Grid, Divider, Container } from "@material-ui/core";
 import useStyles from "./styles";
 
 function ShoppingCart({ cart = [], store }) {
   const classes = useStyles();
 
   return (
-    <Grid comtainer  className={classes.shoppingCartWrapper}>
+    <Container disableGutters className={classes.shoppingCartWrapper}>
+      {!Array.isArray(cart) || !cart.length ? null : (
+        <div>
+          <Typography className={classes.shoppingBagHeading} variant="h5">
+            Shopping Bag
+          </Typography>
+          <Divider variant="fullWidth" />
+        </div>
+      )}
+
       {!Array.isArray(cart) || !cart.length ? (
         <>
           <Typography variant="h5">Cart is Empty!</Typography>
@@ -13,12 +22,13 @@ function ShoppingCart({ cart = [], store }) {
         </>
       ) : (
         cart.map((m, key) => (
-          <Grid container key={key} className={classes.cartProductWrapper}>
+          <Container disableGutters key={key} className={classes.cartProductWrapper}>
             <Grid
               item
               xs={12}
-              sm={8}
-              lg={7}
+              sm={12}
+              md={12}
+              lg={12}
               className={classes.productImgTitleWrapper}
             >
               <img
@@ -26,40 +36,22 @@ function ShoppingCart({ cart = [], store }) {
                 src={m["image"]}
                 alt={m["title"]}
               />
-              <div
-                style={{
-                  height: "fit-content",
-                  paddingLeft: "20px",
-                  paddingRight: "20px",
-                  width: "100%",
-                  textAlign: "start",
-                }}
-              >
-                <Typography className={classes.txtTitle}>
-                  {m["title"]}
-                </Typography>
-              </div>
-            </Grid>
+              <Grid xs={12} item className={classes.productTxtWrapper}>
+                <span className={classes.txtProductDetail}>{m["title"]}</span>
 
-            <Grid
-              item
-              xs={12}
-              sm={4}
-              className={classes.productCountPriceWrapper}
-            >
-              <div>
-                <Typography className={classes.txtQuantity}>
-                  {m["quantity"]}
-                </Typography>
-              </div>
-              <Typography
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-              >{`$${m["price"]}`}</Typography>
+                <span className={classes.txtProductDetail}>
+                  Quantity: {m["quantity"]}
+                </span>
+
+                <span className={classes.txtProductDetail}>
+                  {`$${m["price"]}`}
+                  </span>
+              </Grid>
             </Grid>
-          </Grid>
+          </Container>
         ))
       )}
-    </Grid>
+    </Container>
   );
 }
 
