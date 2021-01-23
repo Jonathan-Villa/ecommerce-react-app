@@ -7,13 +7,19 @@ import {
   Container,
   StepLabel,
 } from "@material-ui/core";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import useStyles from "./styles";
 import ShoppingCart from "./Forms/ShoppingCart";
 import CheckOutOrder from "./Forms/CheckoutOrder";
 import PriceForm from "./Forms/PriceForm";
 import BillingForm from "./Forms/BillingForm";
-const getSteps = [{ label: "Shopping Bag" }, { label: "Checkout" }];
+import OverView from "./Forms/OverviewForm";
+
+const getSteps = [
+  { label: "Shopping Bag" },
+  { label: "Checkout" },
+  { label: "Overview" },
+];
 
 const initalState = { activeStep: 0 };
 
@@ -33,7 +39,7 @@ const stepStateCount = (state, action) => {
 const stepContent = (index, cart, store) => {
   switch (index) {
     case 0:
-      return <ShoppingCart cart={cart} store={store} />;
+      return <ShoppingCart cart={cart} store={store} title="Shopping Cart" />;
     case 1:
       return <CheckOutOrder cart={cart} store={store} />;
     default:
@@ -44,12 +50,18 @@ const stepContent = (index, cart, store) => {
 function Checkout({ cart, store }) {
   const classes = useStyles();
   const [state, dispatch] = useReducer(stepStateCount, initalState);
+  const [input, setInput] = useState({});
 
   // Stepper event handling
   const handleNext = () =>
     dispatch({ type: "INCREMENT", count: state.activeStep });
   const handleReset = () =>
     dispatch({ type: "RESET", count: (state.activeStep = 0) });
+
+  const handleSubmit = (payload) => {
+    setInput(payload);
+    dispatch({ type: "INCREMENT", count: state.activeStep });
+  };
 
   return (
     <Container className={classes.root}>
@@ -64,22 +76,20 @@ function Checkout({ cart, store }) {
           </Stepper>
         </Grid>
 
-        {state.activeStep === getSteps.length ? (
+        {state.activeStep === 2 ? (
           <Grid>
-            <Typography className={classes.instructions}>
-              Comming soon!
-            </Typography>
+            <OverView payload={[input]} cart={cart}  store={store}/>
             <Button onClick={handleReset}>Reset</Button>
           </Grid>
         ) : (
           <Container disableGutters className={classes.displayItemsWrapper}>
             {state.activeStep === 0 ? (
-              <Grid md={10} lg={9}>
+              <Grid item md={10} lg={9}>
                 {stepContent(state.activeStep, cart, store)}
               </Grid>
             ) : state.activeStep === 1 ? (
               <Grid item sm={12} md={10} lg={9}>
-                <BillingForm />
+                <BillingForm handleSubmit={handleSubmit} />
               </Grid>
             ) : null}
 
@@ -91,7 +101,7 @@ function Checkout({ cart, store }) {
                   total={store.total.toFixed(2)}
                 />
                 <div className={classes.btnWrapper}>
-                  {state.activeStep === getSteps.length - 1 ? null : (
+                  {state.activeStep ===  1 ? null : (
                     <Button
                       fullWidth
                       variant="contained"

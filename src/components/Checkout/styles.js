@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   orderSummaryWrapper: {
-    marginTop: "20px",
     maxWidth: "100%",
     display: "flex",
     flexDirection: "column",

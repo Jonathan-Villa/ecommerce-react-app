@@ -1,7 +1,7 @@
 import { Typography, Grid, Divider, Container } from "@material-ui/core";
 import useStyles from "./styles";
 
-function ShoppingCart({ cart = [], store }) {
+function ShoppingCart({ cart = [], store, title }) {
   const classes = useStyles();
 
   return (
@@ -9,7 +9,7 @@ function ShoppingCart({ cart = [], store }) {
       {!Array.isArray(cart) || !cart.length ? null : (
         <div>
           <Typography className={classes.shoppingBagHeading} variant="h5">
-            Shopping Bag
+            {title}
           </Typography>
           <Divider variant="fullWidth" />
         </div>

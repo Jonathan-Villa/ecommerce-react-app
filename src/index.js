@@ -6,7 +6,7 @@ import { default as GlobalStore } from "./store/Store";
 
 ReactDOM.render(
   <Router>
-    <GlobalStore>
+    <GlobalStore >
       <App />
     </GlobalStore>
   </Router>,
