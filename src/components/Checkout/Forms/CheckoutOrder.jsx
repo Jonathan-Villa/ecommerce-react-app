@@ -11,11 +11,7 @@ function CheckOutOrder({ cart = [], store }) {
       {!Array.isArray(cart) || !cart.length ? (
         <Typography variant="h5">Shopping bag is empty!</Typography>
       ) : (
-        <Container disableGutters className={classes.cartWrapper}>
-          <Grid item={true} xs={12}>
-            <ShoppingCart cart={cart} />
-          </Grid>
-        </Container>
+        <ShoppingCart cart={cart} title="Shopping Bag" />
       )}
     </Container>
   );

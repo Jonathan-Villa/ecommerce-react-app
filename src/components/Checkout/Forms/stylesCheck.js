@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   shoppingCartWrapper: {
     width: "100%",
     paddingLeft: "55px",
-    marginTop: "50px",
+    marginTop: "20px",
     [theme.breakpoints.down("sm")]: {
       paddingLeft: "0px",
       display: "none"
@@ -37,7 +37,15 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   shoppingBagHeading: {
-    fontFamily: "Montserrat, sans-serif"
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "1.7rem",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.5rem",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.4rem",
+    },
   },
   txtProductWrapper: {
     display: "flex",

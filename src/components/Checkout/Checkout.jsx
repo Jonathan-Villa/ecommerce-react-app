@@ -78,13 +78,13 @@ function Checkout({ cart, store }) {
 
         {state.activeStep === 2 ? (
           <Grid>
-            <OverView payload={[input]} cart={cart}  store={store}/>
+            <OverView payload={[input]} cart={cart} store={store} />
             <Button onClick={handleReset}>Reset</Button>
           </Grid>
         ) : (
           <Container disableGutters className={classes.displayItemsWrapper}>
             {state.activeStep === 0 ? (
-              <Grid item md={10} lg={9}>
+              <Grid item md={11} lg={12}>
                 {stepContent(state.activeStep, cart, store)}
               </Grid>
             ) : state.activeStep === 1 ? (
@@ -95,14 +95,23 @@ function Checkout({ cart, store }) {
 
             <Grid item xs={12} sm={12} md={8} lg={9}>
               <Grid item lg={12} className={classes.paperBtnWrapper}>
-                <PriceForm
-                  cartQuantity={store.cartQuantity}
-                  subTotal={store.subTotal.toFixed(2)}
-                  total={store.total.toFixed(2)}
-                />
-                <div className={classes.btnWrapper}>
-                  {state.activeStep ===  1 ? null : (
+                <Grid className={classes.orderSummaryParentWrapper} item xs={12}>
+                  <PriceForm
+                    cartQuantity={store.cartQuantity}
+                    subTotal={store.subTotal.toFixed(2)}
+                    total={store.total.toFixed(2)}
+                  />
+                </Grid>
+                <div
+                  className={
+                    state.activeStep === 1
+                      ? classes.btnDeactivate
+                      : classes.btnWrapperActive
+                  }
+                >
+                  {state.activeStep === 1 ? null : (
                     <Button
+                      className={classes.btnStepper}
                       fullWidth
                       variant="contained"
                       color="primary"
@@ -114,7 +123,9 @@ function Checkout({ cart, store }) {
                 </div>
               </Grid>
               {state.activeStep === 1
-                ? stepContent(state.activeStep, cart, store)
+                ? stepContent(state.activeStep, cart, store, {
+                    title: "Shopping Bag",
+                  })
                 : null}
             </Grid>
           </Container>

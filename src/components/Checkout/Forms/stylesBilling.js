@@ -5,29 +5,40 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "55px",
     width: "100%",
     [theme.breakpoints.down("md")]: {
-      width: "100%"
+      width: "100%",
     },
     [theme.breakpoints.down("sm")]: {
       paddingRight: "0px",
-      width: "100%"
-    }
+      width: "100%",
+    },
   },
   headingWrapper: {
-    paddingBottom: "10px"
+    paddingBottom: "10px",
   },
   txtField: {
     paddingTop: "10px",
-    paddingBottom: "10px"
+    paddingBottom: "10px",
   },
   txtGroupWrapper: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   addressWrapper: {},
   emailPhoneWrapper: {
     display: "flex",
     flexDirection: "column",
-    width: "auto"
+    width: "auto",
+  },
+
+  txtBillingHeading: {
+    fontSize: "1.7rem",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.5rem",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.4rem",
+    },
   },
   txtFirstName: {
     fontFamily: "Montserrat, sans-serif",
@@ -35,47 +46,47 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
     marginRight: "10px",
     flex: 1,
-    height: "auto"
+    height: "auto",
   },
   txtLastName: {
     flex: 1,
     marginTop: "10px",
     marginBottom: "10px",
-    height: "auto"
+    height: "auto",
   },
   txtState: {
     marginTop: "10px",
     marginBottom: "10px",
     marginRight: "10px",
-    height: "auto"
+    height: "auto",
   },
   txtCity: {
     marginTop: "10px",
     marginBottom: "10px",
     height: "auto",
 
-    [theme.breakpoints.down('xs')]:{
-      width:"90%"
-    }
+    [theme.breakpoints.down("xs")]: {
+      width: "80%",
+    },
   },
   txtApartment: {
     marginTop: "10px",
     marginBottom: "10px",
     marginRight: "10px",
-    height: "auto"
+    height: "auto",
   },
   txtCountry: {
     flex: 1,
     marginTop: "10px",
     marginBottom: "10px",
     marginRight: "10px",
-    height: "auto"
+    height: "auto",
   },
   txtZip: {
     flex: 1,
     marginTop: "10px",
     marginBottom: "10px",
-    height: "auto"
+    height: "auto",
   },
   txtEmail: {
     marginTop: "10px",
@@ -83,24 +94,24 @@ const useStyles = makeStyles((theme) => ({
     width: "55%",
     height: "auto",
     [theme.breakpoints.down("sm")]: {
-      width: "100%"
-    }
+      width: "100%",
+    },
   },
   txtPhoneNum: {
     marginTop: "10px",
-    marginBottom: "10px",
+
     width: "40%",
     height: "auto",
     [theme.breakpoints.down("sm")]: {
-      width: "100%"
-    }
+      width: "100%",
+    },
   },
   btnReview: {
     marginTop: "20px",
-    [theme.breakpoints.down('sm')]: {
-      width: "100%"
-    }
-  }
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
 }));
 
 export default useStyles;

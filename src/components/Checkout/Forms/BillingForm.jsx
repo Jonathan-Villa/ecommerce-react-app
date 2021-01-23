@@ -50,7 +50,7 @@ function BillingForm(props) {
   return (
     <form className={classes.root} onSubmit={handleBillSubmit} elevation={0}>
       <div className={classes.headingWrapper}>
-        <Typography variant="h5">Checkout</Typography>
+        <Typography className={classes.txtBillingHeading} variant="h5">Checkout</Typography>
         <Divider variant="fullWidth" />
       </div>
 

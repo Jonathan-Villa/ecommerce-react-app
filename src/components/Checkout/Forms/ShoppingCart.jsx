@@ -6,25 +6,23 @@ function ShoppingCart({ cart = [], store, title }) {
 
   return (
     <Container disableGutters className={classes.shoppingCartWrapper}>
-      {!Array.isArray(cart) || !cart.length ? null : (
-        <div>
-          <Typography className={classes.shoppingBagHeading} variant="h5">
-            {title}
-          </Typography>
-          <Divider variant="fullWidth" />
-        </div>
-      )}
-
       {!Array.isArray(cart) || !cart.length ? (
         <>
           <Typography variant="h5">Cart is Empty!</Typography>
           <Divider variant="fullWidth" />
         </>
       ) : (
-        cart.map((m, key) => (
-          <Container disableGutters key={key} className={classes.cartProductWrapper}>
+        <Container disableGutters className={classes.cartProductWrapper}>
+          <div style={{ marginBottom: "10px" }}>
+            <Typography className={classes.shoppingBagHeading} variant="h5">
+              {title}
+            </Typography>
+            <Divider variant="fullWidth" />
+          </div>
+          {cart.map((m, key) => (
             <Grid
               item
+              key={key}
               xs={12}
               sm={12}
               md={12}
@@ -45,11 +43,11 @@ function ShoppingCart({ cart = [], store, title }) {
 
                 <span className={classes.txtProductDetail}>
                   {`$${m["price"]}`}
-                  </span>
+                </span>
               </Grid>
             </Grid>
-          </Container>
-        ))
+          ))}
+        </Container>
       )}
     </Container>
   );

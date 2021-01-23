@@ -10,39 +10,76 @@ import {
   FormControlLabel,
   Divider,
   FormLabel,
+  ThemeProvider,
 } from "@material-ui/core";
-import useStyles from "./stylesPayment"
+import useStyles, {theme} from "./stylesPayment";
+
 
 function PaymentForm() {
-    const classes = useStyles()
+  const classes = useStyles();
   return (
     <Grid item xs={12} sm={12} md={9} className={classes.root}>
       <Container className={classes.paymentContainer}>
-        <Typography variant="h4">Payment</Typography>
+        <Typography className={classes.txtPaymentHeading} variant="h5">
+          Payment
+        </Typography>
         <Divider variant="fullWidth" />
         <Grid item className={classes.radioWrapper}>
-          <FormControl>
-            <FormLabel >Select a payment method</FormLabel>
-            <RadioGroup>
-              <FormControlLabel
-                label="Credit Card"
-                control={<Radio />}
-              ></FormControlLabel>
-              <FormControlLabel
-                label="Pay Pal"
-                control={<Radio />}
-              ></FormControlLabel>
-            </RadioGroup>
-          </FormControl>
+          <ThemeProvider theme={theme}>
+            <FormControl>
+              <FormLabel>Select a payment method</FormLabel>
+
+              <RadioGroup>
+                <FormControlLabel
+                  className={classes.radControlLabel}
+                  value="creditCard"
+                  label="Credit Card"
+                  control={<Radio />}
+                ></FormControlLabel>
+                <FormControlLabel
+                  className={classes.radControlLabel}
+                  value="payPal"
+                  label="Pay Pal"
+                  control={<Radio />}
+                ></FormControlLabel>
+              </RadioGroup>
+            </FormControl>
+          </ThemeProvider>
         </Grid>
 
         <Grid item>
-          <TextField fullWidth label="CARD NUMBER" />
+          <TextField
+            fullWidth
+            label="CARD NUMBER"
+            className={classes.txtCardNumber}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
           <Grid item className={classes.expiryCvcWrapper}>
-          <TextField className={classes.txtExpiry} label="EXPIRY DATE" />
-          <TextField className={classes.txtCvc} label="CVC / CVV" />
+            <TextField
+              className={classes.txtExpiry}
+              label="EXPIRY DATE"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <TextField
+              className={classes.txtCvc}
+              label="CVC / CVV"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
           </Grid>
-          <TextField fullWidth label="CARDHOLDER NAME" />
+          <TextField
+            className={classes.txtHolderName}
+            fullWidth
+            label="CARDHOLDER NAME"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
         </Grid>
       </Container>
     </Grid>

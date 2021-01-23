@@ -25,10 +25,6 @@ function PriceForm({ cartQuantity, subTotal, total }) {
           <span>Estimated Total:</span>
           <span>${total}</span>
         </Grid>
-
-        
-
-
       </Container>
     </Container>
   );

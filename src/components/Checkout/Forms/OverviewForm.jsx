@@ -10,7 +10,7 @@ function OverviewForm({ payload = [], cart, store }) {
   console.log(payload);
 
   return (
-    <Container className={classes.root}>
+    <Container disableGutters className={classes.root}>
       {!Array.isArray(payload) || !payload.length
         ? null
         : payload.map((m, key) => (
@@ -18,7 +18,10 @@ function OverviewForm({ payload = [], cart, store }) {
               <PaymentForm />
 
               <Grid item xs={12} sm={12} md={6} lg={6}>
-                <Container disableGutters className={classes.addressWrapper}>
+                <Container
+                  disableGutters
+                  className={classes.summaryGridWrapper}
+                >
                   <Grid item xs={12}>
                     <PriceForm
                       cartQuantity={store.cartQuantity}
@@ -26,23 +29,25 @@ function OverviewForm({ payload = [], cart, store }) {
                       total={store.total.toFixed(2)}
                     />
 
-                    <Typography variant="h5">Shipping Summary</Typography>
-                    <Divider variant="fullWidth" />
+                    <Grid className={classes.addressWrapper} item xs={12}>
+                      <Typography className={classes.txtShippingSumHeading} variant="h5">Shipping Summary</Typography>
+                      <Divider variant="fullWidth" />
 
-                    <Grid className={classes.groupWrapper} item xs={12}>
-                    <Typography variant="h6">
-                      Shipping to
-                    </Typography>
-
-                      <span className={classes.txtSpanName}>
-                        {m.firstName} {m.lastName}
-                      </span>
-                      <span className={classes.txtAddressSpan}>
-                        {m.address} <br /> {m.city}, {m.state} {m.zip} <br />
-                        {m.phoneNum}
-                      </span>
+                      <Typography className={classes.txtShippingToHeading}>
+                        Shipping to
+                      </Typography>
+                      <Grid item xs={12} className={classes.spanWrapper}>
+                        <span className={classes.txtSpanName}>
+                          {m.firstName} {m.lastName}
+                        </span>
+                        <span className={classes.txtAddressSpan}>
+                          {m.address} <br /> {m.city}, {m.state} {m.zip} <br />
+                          {m.phoneNum}
+                        </span>
+                      </Grid>
                     </Grid>
                   </Grid>
+
                   <Grid item xs={12} sm={12}>
                     <ShoppingCart cart={cart} title="Your Cart" />
                   </Grid>
