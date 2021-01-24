@@ -55,21 +55,24 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
   },
   txtState: {
+    flex:1 ,
     marginTop: "10px",
     marginBottom: "10px",
     marginRight: "10px",
     height: "auto",
   },
   txtCity: {
+    flex: 1,
     marginTop: "10px",
     marginBottom: "10px",
     height: "auto",
 
     [theme.breakpoints.down("xs")]: {
-      width: "80%",
+
     },
   },
   txtApartment: {
+    flex: 1,
     marginTop: "10px",
     marginBottom: "10px",
     marginRight: "10px",
@@ -108,6 +111,7 @@ const useStyles = makeStyles((theme) => ({
   },
   btnReview: {
     marginTop: "20px",
+    marginBottom:"20px",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
     },

@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme) => ({
   productRoot: {},
   shoppingCartWrapper: {
     width: "100%",
+
     [theme.breakpoints.down("sm")]: {},
   },
   cartProductWrapper: {

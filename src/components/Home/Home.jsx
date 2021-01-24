@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import { Grid, Container, Backdrop, CircularProgress } from "@material-ui/core";
 import { useStyles } from "./styles";
 import { Context } from "../../store/Store";
@@ -27,7 +28,7 @@ function Home() {
   }, [dispatch]);
 
   const handleCartItems = (title, price, category, image) => {
-    const copyList = [...state.cart]; 
+    const copyList = [...state.cart];
     const selected = { title, price, category, image };
     selected.quantity = 1;
 

@@ -12,7 +12,7 @@ import {
   FormLabel,
   ThemeProvider,
 } from "@material-ui/core";
-import useStyles, {theme} from "./stylesPayment";
+import useStyles from "./stylesPayment";
 
 
 function PaymentForm() {
@@ -25,26 +25,27 @@ function PaymentForm() {
         </Typography>
         <Divider variant="fullWidth" />
         <Grid item className={classes.radioWrapper}>
-          <ThemeProvider theme={theme}>
-            <FormControl>
-              <FormLabel>Select a payment method</FormLabel>
+          <FormControl>
+            <FormLabel>Select a payment method</FormLabel>
 
-              <RadioGroup>
+            <RadioGroup>
+              <ThemeProvider >
                 <FormControlLabel
                   className={classes.radControlLabel}
                   value="creditCard"
                   label="Credit Card"
                   control={<Radio />}
                 ></FormControlLabel>
-                <FormControlLabel
-                  className={classes.radControlLabel}
-                  value="payPal"
-                  label="Pay Pal"
-                  control={<Radio />}
-                ></FormControlLabel>
-              </RadioGroup>
-            </FormControl>
-          </ThemeProvider>
+              </ThemeProvider>
+
+              <FormControlLabel
+                className={classes.radControlLabel}
+                value="payPal"
+                label="Pay Pal"
+                control={<Radio />}
+              ></FormControlLabel>
+            </RadioGroup>
+          </FormControl>
         </Grid>
 
         <Grid item>

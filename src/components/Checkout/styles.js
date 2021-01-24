@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     boxSizing: "border-sizing",
     height: "fit-content",
+    paddingBottom: "20px",
     [theme.breakpoints.down("sm")]: {},
   },
   mainWrapperCheckOut: {
@@ -40,18 +41,16 @@ const useStyles = makeStyles((theme) => ({
 
   orderSummaryParentWrapper: {
     boxSizing: "border-box",
+    paddingTop: "0px",
+    paddingBottom: "0px",
 
-
-    [theme.breakpoints.down("sm")]: {
-      paddingTop:"20px",
-      paddingBottom:"20px",
-     
-    },
+    [theme.breakpoints.down("sm")]: {},
   },
   orderSummaryWrapper: {
     maxWidth: "100%",
     display: "flex",
     flexDirection: "column",
+
     [theme.breakpoints.down("sm")]: {},
   },
 
@@ -60,19 +59,20 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     paddingLeft: "55px",
     [theme.breakpoints.down("sm")]: {
-      paddingLeft: "0px"
+      paddingLeft: "0px",
     },
   },
   btnWrapperActive: {
     boxSizing: "border-box",
     marginTop: "20px",
-    padding: "20px",
     display: "flex",
     justifyContent: "center",
-
     width: "100%",
+
     [theme.breakpoints.down("sm")]: {
       width: "100%",
+      marginTop: "0px",
+      padding: "20px 0px",
     },
   },
   btnWrapperDeactivate: {

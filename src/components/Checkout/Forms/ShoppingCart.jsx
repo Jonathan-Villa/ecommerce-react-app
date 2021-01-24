@@ -1,7 +1,14 @@
-import { Typography, Grid, Divider, Container } from "@material-ui/core";
+import {
+  Typography,
+  Grid,
+  Divider,
+  Container,
+  Button,
+} from "@material-ui/core";
 import useStyles from "./styles";
+import PriceForm from "./PriceForm";
 
-function ShoppingCart({ cart = [], store, title }) {
+function ShoppingCart({ cart = [], store, title, handleNext }) {
   const classes = useStyles();
 
   return (

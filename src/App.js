@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { NavBar, Home } from "./components";
 import { useState, useContext } from "react";
 import { Context } from "./store/Store";

@@ -1,4 +1,4 @@
-import { makeStyles, createMuiTheme } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,24 +61,6 @@ const useStyles = makeStyles((theme) => ({
   txtHolderName: {
     marginTop: "10px",
   },
-}));
-
-export const theme = createMuiTheme(({
-  overrides:{
-    MuiFormControl:{
-      root:{
-        fontFamily: "Montserrat, sans-serif",
-        fontSize: "1.7rem",
-        '&:[theme.breakpoints.down("md")]': {
-           fontSize: "1.5rem",
-         },
-   
-         '&:[theme.breakpoints.down("sm")]': {
-           fontSize: "1.4rem",
-         },
-      }
-    }
-  }
 }));
 
 export default useStyles;

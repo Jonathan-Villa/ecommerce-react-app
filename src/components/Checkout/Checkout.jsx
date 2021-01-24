@@ -3,11 +3,10 @@ import {
   Stepper,
   Step,
   Button,
-  Typography,
   Container,
   StepLabel,
 } from "@material-ui/core";
-import { useReducer, useState } from "react";
+import { useReducer, useState, useEffect } from "react";
 import useStyles from "./styles";
 import ShoppingCart from "./Forms/ShoppingCart";
 import CheckOutOrder from "./Forms/CheckoutOrder";
@@ -77,10 +76,10 @@ function Checkout({ cart, store }) {
         </Grid>
 
         {state.activeStep === 2 ? (
-          <Grid>
+          <Container disableGutters>
             <OverView payload={[input]} cart={cart} store={store} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Grid>
+            <Button color="primary" variant="contained" onClick={handleReset}>Reset</Button>
+          </Container>
         ) : (
           <Container disableGutters className={classes.displayItemsWrapper}>
             {state.activeStep === 0 ? (

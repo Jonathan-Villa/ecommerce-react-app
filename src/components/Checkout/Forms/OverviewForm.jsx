@@ -14,7 +14,7 @@ function OverviewForm({ payload = [], cart, store }) {
       {!Array.isArray(payload) || !payload.length
         ? null
         : payload.map((m, key) => (
-            <Container disableGutters className={classes.summaryContainer}>
+            <Container disableGutters key={key} className={classes.summaryContainer}>
               <PaymentForm />
 
               <Grid item xs={12} sm={12} md={6} lg={6}>
@@ -30,7 +30,12 @@ function OverviewForm({ payload = [], cart, store }) {
                     />
 
                     <Grid className={classes.addressWrapper} item xs={12}>
-                      <Typography className={classes.txtShippingSumHeading} variant="h5">Shipping Summary</Typography>
+                      <Typography
+                        className={classes.txtShippingSumHeading}
+                        variant="h5"
+                      >
+                        Shipping Summary
+                      </Typography>
                       <Divider variant="fullWidth" />
 
                       <Typography className={classes.txtShippingToHeading}>
