@@ -1,7 +1,6 @@
 import React from "react";
-import { Typography, Grid, Container } from "@material-ui/core";
-import useStyles from "./stylesCheck";
-import ShoppingCart from "./ShoppingCart";
+import { Typography, makeStyles, Container } from "@material-ui/core";
+import ShoppingCart from "./ShoppingCartForm";
 
 function CheckOutOrder({ cart = [], store }) {
   const classes = useStyles();
@@ -16,5 +15,18 @@ function CheckOutOrder({ cart = [], store }) {
     </Container>
   );
 }
+
+
+const useStyles = makeStyles((theme) => ({
+  shoppingCartWrapper: {
+    width: "100%",
+    paddingLeft: "55px",
+    marginTop: "20px",
+    [theme.breakpoints.down("sm")]: {
+      paddingLeft: "0px",
+      display: "none"
+    }
+  },
+}));
 
 export default CheckOutOrder;

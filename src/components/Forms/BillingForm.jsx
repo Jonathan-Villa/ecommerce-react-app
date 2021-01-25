@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Grid,
   TextField,
   Button,
   Typography,
   Divider,
+  makeStyles,
 } from "@material-ui/core";
-import useStyles from "./stylesBilling";
 
 function BillingForm(props) {
   const classes = useStyles();
@@ -50,7 +50,9 @@ function BillingForm(props) {
   return (
     <form className={classes.root} onSubmit={handleBillSubmit} elevation={0}>
       <div className={classes.headingWrapper}>
-        <Typography className={classes.txtBillingHeading} variant="h5">Checkout</Typography>
+        <Typography className={classes.txtBillingHeading} variant="h5">
+          Checkout
+        </Typography>
         <Divider variant="fullWidth" />
       </div>
 
@@ -207,5 +209,121 @@ function BillingForm(props) {
     </form>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginRight: "55px",
+    width: "100%",
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      paddingRight: "0px",
+      width: "100%",
+    },
+  },
+  headingWrapper: {
+    paddingBottom: "10px",
+  },
+  txtField: {
+    paddingTop: "10px",
+    paddingBottom: "10px",
+  },
+  txtGroupWrapper: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  addressWrapper: {},
+  emailPhoneWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    width: "auto",
+  },
+
+  txtBillingHeading: {
+    fontSize: "1.7rem",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.5rem",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.4rem",
+    },
+  },
+  txtFirstName: {
+    fontFamily: "Montserrat, sans-serif",
+    marginTop: "10px",
+    marginBottom: "10px",
+    marginRight: "10px",
+    flex: 1,
+    height: "auto",
+  },
+  txtLastName: {
+    flex: 1,
+    marginTop: "10px",
+    marginBottom: "10px",
+    height: "auto",
+  },
+  txtState: {
+    flex: 1,
+    marginTop: "10px",
+    marginBottom: "10px",
+    marginRight: "10px",
+    height: "auto",
+  },
+  txtCity: {
+    flex: 1,
+    marginTop: "10px",
+    marginBottom: "10px",
+    height: "auto",
+
+    [theme.breakpoints.down("xs")]: {},
+  },
+  txtApartment: {
+    flex: 1,
+    marginTop: "10px",
+    marginBottom: "10px",
+    marginRight: "10px",
+    height: "auto",
+  },
+  txtCountry: {
+    flex: 1,
+    marginTop: "10px",
+    marginBottom: "10px",
+    marginRight: "10px",
+    height: "auto",
+  },
+  txtZip: {
+    flex: 1,
+    marginTop: "10px",
+    marginBottom: "10px",
+    height: "auto",
+  },
+  txtEmail: {
+    marginTop: "10px",
+    marginBottom: "10px",
+    width: "55%",
+    height: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
+  txtPhoneNum: {
+    marginTop: "10px",
+
+    width: "40%",
+    height: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
+  btnReview: {
+    marginTop: "20px",
+    marginBottom: "20px",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
+}));
 
 export default BillingForm;

@@ -5,14 +5,14 @@ import {
   Button,
   Container,
   StepLabel,
+  makeStyles,
 } from "@material-ui/core";
-import { useReducer, useState, useEffect } from "react";
-import useStyles from "./styles";
-import ShoppingCart from "./Forms/ShoppingCart";
-import CheckOutOrder from "./Forms/CheckoutOrder";
-import PriceForm from "./Forms/PriceForm";
-import BillingForm from "./Forms/BillingForm";
-import OverView from "./Forms/OverviewForm";
+import { useReducer, useState } from "react";
+import ShoppingCart from "../components/Forms/ShoppingCartForm";
+import CheckOutOrder from "../components/Forms/CheckoutOrderForm";
+import PriceForm from "../components/Forms/OrderSummaryForm";
+import BillingForm from "../components/Forms/BillingForm";
+import OverView from "../components/Forms/OverviewForm";
 
 const getSteps = [
   { label: "Shopping Bag" },
@@ -78,7 +78,9 @@ function Checkout({ cart, store }) {
         {state.activeStep === 2 ? (
           <Container disableGutters>
             <OverView payload={[input]} cart={cart} store={store} />
-            <Button color="primary" variant="contained" onClick={handleReset}>Reset</Button>
+            <Button color="primary" variant="contained" onClick={handleReset}>
+              Reset
+            </Button>
           </Container>
         ) : (
           <Container disableGutters className={classes.displayItemsWrapper}>
@@ -94,7 +96,11 @@ function Checkout({ cart, store }) {
 
             <Grid item xs={12} sm={12} md={8} lg={9}>
               <Grid item lg={12} className={classes.paperBtnWrapper}>
-                <Grid className={classes.orderSummaryParentWrapper} item xs={12}>
+                <Grid
+                  className={classes.orderSummaryParentWrapper}
+                  item
+                  xs={12}
+                >
                   <PriceForm
                     cartQuantity={store.cartQuantity}
                     subTotal={store.subTotal.toFixed(2)}
@@ -133,5 +139,132 @@ function Checkout({ cart, store }) {
     </Container>
   );
 }
+
+export const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: "65px",
+    display: "flex",
+    flexDirection: "column",
+    overflow: "none",
+    alignItems: "center",
+    boxSizing: "border-sizing",
+    height: "fit-content",
+    paddingBottom: "20px",
+    [theme.breakpoints.down("sm")]: {},
+  },
+  mainWrapperCheckOut: {
+    paddingTop: "30px",
+    paddingLeft: "30px",
+    paddingRight: "30px",
+    position: "relative",
+    height: "fit-content",
+    [theme.breakpoints.down("md")]: {
+      paddingRight: "15px",
+      paddingLeft: "15px",
+      paddingTop: "26px",
+      width: "100%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      paddingRight: "0px",
+      paddingLeft: "0px",
+      paddingTop: "26px",
+    },
+  },
+  displayItemsWrapper: {
+    marginTop: "20px",
+    width: "100%",
+    display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      display: "inline-block",
+    },
+  },
+
+  orderSummaryParentWrapper: {
+    boxSizing: "border-box",
+    paddingTop: "0px",
+    paddingBottom: "0px",
+
+    [theme.breakpoints.down("sm")]: {},
+  },
+  orderSummaryWrapper: {
+    maxWidth: "100%",
+    display: "flex",
+    flexDirection: "column",
+
+    [theme.breakpoints.down("sm")]: {},
+  },
+
+  paperBtnWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    paddingLeft: "55px",
+    [theme.breakpoints.down("sm")]: {
+      paddingLeft: "0px",
+    },
+  },
+  btnWrapperActive: {
+    boxSizing: "border-box",
+    marginTop: "20px",
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
+
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      marginTop: "0px",
+      padding: "20px 0px",
+    },
+  },
+  btnWrapperDeactivate: {
+    display: "none",
+  },
+  backButton: {
+    marginRight: theme.spacing(1),
+  },
+  instructions: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+  productImage: {
+    width: "90px",
+    objectFit: "contain",
+  },
+  txtOrderHeading: {
+    height: "fit-content",
+    fontFamily: "Montserrat, sans-serif",
+
+    fontSize: "1.7rem",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.5rem",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.4rem",
+    },
+  },
+  txtOrderSummary: {
+    marginTop: "10px",
+    display: "flex",
+    justifyContent: "space-between",
+    height: "fit-content",
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "1.1rem",
+
+    [theme.breakpoints.down("md")]: {
+      fontSize: ".98rem",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: ".90rem",
+    },
+  },
+
+  btnStepper: {
+    [theme.breakpoints.down("sm")]: {
+      padding: "10px",
+      width: "100%",
+    },
+  },
+}));
 
 export default Checkout;

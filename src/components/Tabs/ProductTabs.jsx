@@ -1,7 +1,6 @@
 import { TabPanel, TabList, TabContext } from "@material-ui/lab";
-import { Tab, Grid, Toolbar, Fade } from "@material-ui/core";
+import { Tab, Grid, Toolbar, Fade, makeStyles } from "@material-ui/core";
 import ProductCard from "../Card/ProductCards";
-import useStyles from "./styles";
 
 function ProductTabs({
   value,
@@ -13,6 +12,8 @@ function ProductTabs({
   jewelery,
   handleCartItems,
   handleDrawerToggle,
+  setOpen,
+  handleDialogContent
 }) {
   const classes = useStyles();
 
@@ -20,12 +21,17 @@ function ProductTabs({
     setValue(newValue);
   };
 
+  const handleClick = (e)=> {
+    console.log(e)
+    setOpen(true)
+  }
+
   return (
     <Toolbar className={classes.root}>
       <TabContext value={value}>
         <TabList
-        indicatorColor="primary"
-        textColor="primary"
+          indicatorColor="primary"
+          textColor="primary"
           scrollButtons="on"
           variant="scrollable"
           className={classes.tabList}
@@ -53,6 +59,8 @@ function ProductTabs({
                   md={4}
                 >
                   <ProductCard
+                    handleDialogContent={handleDialogContent}
+                    handleClick={handleClick}
                     handleDrawer={handleDrawerToggle}
                     handleAddCart={handleCartItems}
                     price={m["price"]}
@@ -81,6 +89,7 @@ function ProductTabs({
                   <ProductCard
                     handleDrawer={handleDrawerToggle}
                     handleAddCart={handleCartItems}
+                    handleClick={handleClick}
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
@@ -107,6 +116,7 @@ function ProductTabs({
                   <ProductCard
                     handleDrawer={handleDrawerToggle}
                     handleAddCart={handleCartItems}
+                    handleClick={handleClick}
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
@@ -133,6 +143,7 @@ function ProductTabs({
                   <ProductCard
                     handleDrawer={handleDrawerToggle}
                     handleAddCart={handleCartItems}
+                    handleClick={handleClick}
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
@@ -159,6 +170,7 @@ function ProductTabs({
                   <ProductCard
                     handleDrawer={handleDrawerToggle}
                     handleAddCart={handleCartItems}
+                    handleClick={handleClick}
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
@@ -173,5 +185,50 @@ function ProductTabs({
     </Toolbar>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    boxSizing: "border-box",
+    width: "100%",
+    justifyContent: "center",
+    flexDirection: "column",
+
+    [theme.breakpoints.down("xs")]: {
+      paddingRight: 0,
+      paddingLeft: 0,
+    },
+  },
+  tabList: {
+    paddingTop: "16px",
+    paddingBottom: "16px",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
+  tab: {
+    "&:hover": {
+      opacity: "1",
+      color: "#ced4da",
+    },
+  },
+
+  tabPanel: {
+    width: "100%",
+    display: "column",
+    justifyContent: "center",
+    boxSizing: "border-box",
+
+    [theme.breakpoints.down("xs")]: {
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
+  },
+
+  gridItemWrapper: {
+    display: "flex",
+    justifyContent: "center",
+  },
+}));
 
 export default ProductTabs;

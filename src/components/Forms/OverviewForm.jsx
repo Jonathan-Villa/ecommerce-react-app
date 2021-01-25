@@ -1,20 +1,28 @@
 import React from "react";
-import { Grid, Container, Typography, Divider, Paper } from "@material-ui/core";
-import useStyles from "./stylesOverview";
-import ShoppingCart from "./ShoppingCart";
-import PriceForm from "./PriceForm";
+import {
+  Grid,
+  Container,
+  Typography,
+  Divider,
+  makeStyles,
+} from "@material-ui/core";
+import ShoppingCart from "./ShoppingCartForm";
+import PriceForm from "./OrderSummaryForm";
 import PaymentForm from "./PaymentForm";
 
 function OverviewForm({ payload = [], cart, store }) {
   const classes = useStyles();
-  console.log(payload);
 
   return (
     <Container disableGutters className={classes.root}>
       {!Array.isArray(payload) || !payload.length
         ? null
         : payload.map((m, key) => (
-            <Container disableGutters key={key} className={classes.summaryContainer}>
+            <Container
+              disableGutters
+              key={key}
+              className={classes.summaryContainer}
+            >
               <PaymentForm />
 
               <Grid item xs={12} sm={12} md={6} lg={6}>
@@ -63,5 +71,68 @@ function OverviewForm({ payload = [], cart, store }) {
     </Container>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  summaryContainer: {
+    display: "flex",
+
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+  },
+
+  spanWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    height: "fit-content",
+    boxSizing: "border-box",
+    paddingTop: "5px",
+    fontSize: ".83rem",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: ".76rem",
+    },
+  },
+  summaryGridWrapper: {
+    padding: "20px 0px",
+    display: "flex",
+    flexDirection: "column",
+    height: "fit-content",
+  },
+  txtShippingSumHeading: {
+    marginTop: "20px",
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "1.7rem",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.5rem",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.4rem",
+    },
+  },
+
+  txtShippingToHeading: {
+    marginTop: "10px",
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "1.1rem",
+    [theme.breakpoints.down("md")]: {
+      fontSize: ".98rem",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: ".90rem",
+    },
+  },
+
+  txtAddressSpan: {
+    lineHeight: "25px",
+  },
+  txtSpanName: {
+    paddingRight: "5px",
+    lineHeight: "25px",
+  },
+}));
 
 export default OverviewForm;

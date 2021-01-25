@@ -1,17 +1,25 @@
 import { useEffect, useState, useContext } from "react";
-import { useLocation, useHistory } from "react-router-dom";
-import { Grid, Container, Backdrop, CircularProgress } from "@material-ui/core";
-import { useStyles } from "./styles";
-import { Context } from "../../store/Store";
-import Tabs from "../Tabs/ProductTabs";
-import DrawerCart from "../Drawer/DrawerCart";
+import {
+  Grid,
+  Container,
+  Backdrop,
+  CircularProgress,
+  makeStyles,
+  Dialog,
+} from "@material-ui/core";
+import { Context } from "../store/Store";
+import Tabs from "../components/Tabs/ProductTabs";
+import DrawerCart from "../components/Drawer/DrawerCart";
+import ProductDialog from "../components/Dialog/ProductDialog";
 
 function Home() {
   const [open, setOpen] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
   const [state, dispatch] = useContext(Context);
   const [value, setValue] = useState("1");
   const [openDrawer, setOpenDrawer] = useState(false);
   const classes = useStyles();
+  const [dialogContent, setDialogContent] = useState();
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -29,7 +37,9 @@ function Home() {
 
   const handleCartItems = (title, price, category, image) => {
     const copyList = [...state.cart];
+
     const selected = { title, price, category, image };
+    setDialogContent()
     selected.quantity = 1;
 
     // find duplicate items
@@ -49,9 +59,18 @@ function Home() {
     });
   };
 
-  const handleDrawerToggle = () => {
-    setOpenDrawer(!openDrawer);
+  const handleClose = () => {
+    setOpenDialog(!openDialog);
   };
+
+  const handleDrawerToggle = () => {
+    setOpenDrawer(false);
+  };
+
+  const handleDialogContent = (title, price, category, image)=> {
+    const selected =  { title, price, category, image };
+    setDialogContent(selected)
+  }
 
   return (
     <Container className={classes.main} maxWidth="lg">
@@ -71,10 +90,17 @@ function Home() {
             jewelery={state.jewelery.items}
             electronics={state.electronics.items}
             allProduct={state.allProduct.items}
+            setOpen={setOpenDialog}
+            handleDialogContent={handleDialogContent}
           />
         )}
       </Grid>
 
+      <ProductDialog
+        open={openDialog}
+        handleClose={handleClose}
+        children={dialogContent}
+      />
       <DrawerCart
         open={openDrawer}
         items={state.cart}
@@ -83,5 +109,18 @@ function Home() {
     </Container>
   );
 }
-
+const useStyles = makeStyles((theme) => ({
+  main: {
+    marginTop: "68px",
+    height: "100%",
+  },
+  homeWrapper: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  backDrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
+  },
+}));
 export default Home;

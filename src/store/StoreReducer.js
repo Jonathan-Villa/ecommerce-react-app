@@ -1,4 +1,3 @@
-
 const storeReducer = (state, action) => {
   switch (action.type) {
     case "LOADING_PRODUCTS":
