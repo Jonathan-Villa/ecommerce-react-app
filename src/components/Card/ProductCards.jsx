@@ -6,9 +6,8 @@ import {
   CardActions,
   Button,
   makeStyles,
-  ButtonBase,
 } from "@material-ui/core";
-
+import { Link } from "react-router-dom";
 function ProductCards({
   image,
   price,
@@ -16,16 +15,13 @@ function ProductCards({
   title,
   category,
   handleAddCart,
-  handleClick, 
-  handleDialogContent
+  handleProductLink
 }) {
   const classes = useStyles();
 
   return (
-
-
     <Card elevation={0} className={classes.root}>
-      <ButtonBase onClick={()=>  handleClick() || handleDialogContent(title, price, category, image)}>
+      <Link to="/product" onClick={()=> handleProductLink(title, price, category, image)}>
         <CardMedia
           component="img"
           image={image}
@@ -33,7 +29,7 @@ function ProductCards({
           className={classes.media}
           title={title}
         />
-      </ButtonBase>
+      </Link>
 
       <CardContent className={classes.content}>
         <Typography
@@ -76,6 +72,10 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.down("xs")]: {},
   },
+  btnBase: {
+    display: "flex",
+    justifyContent: "center",
+  },
   media: {
     margin: "auto",
     height: "200px",
@@ -83,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: "border-box",
     padding: 20,
     objectFit: "contain",
+
     [theme.breakpoints.down("sm")]: {
       width: "140px",
     },

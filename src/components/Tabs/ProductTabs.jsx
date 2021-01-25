@@ -13,7 +13,8 @@ function ProductTabs({
   handleCartItems,
   handleDrawerToggle,
   setOpen,
-  handleDialogContent
+  handleDialogContent,
+  handleProductLink
 }) {
   const classes = useStyles();
 
@@ -21,8 +22,7 @@ function ProductTabs({
     setValue(newValue);
   };
 
-  const handleClick = (e)=> {
-    console.log(e)
+  const handleClick = ()=> {
     setOpen(true)
   }
 
@@ -59,6 +59,7 @@ function ProductTabs({
                   md={4}
                 >
                   <ProductCard
+                  handleProductLink={handleProductLink}
                     handleDialogContent={handleDialogContent}
                     handleClick={handleClick}
                     handleDrawer={handleDrawerToggle}

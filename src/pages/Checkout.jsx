@@ -7,7 +7,7 @@ import {
   StepLabel,
   makeStyles,
 } from "@material-ui/core";
-import { useReducer, useState } from "react";
+import { useReducer, useState, useEffect } from "react";
 import ShoppingCart from "../components/Forms/ShoppingCartForm";
 import CheckOutOrder from "../components/Forms/CheckoutOrderForm";
 import PriceForm from "../components/Forms/OrderSummaryForm";
@@ -50,6 +50,7 @@ function Checkout({ cart, store }) {
   const classes = useStyles();
   const [state, dispatch] = useReducer(stepStateCount, initalState);
   const [input, setInput] = useState({});
+
 
   // Stepper event handling
   const handleNext = () =>
