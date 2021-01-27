@@ -1,18 +1,16 @@
-import {
-  Grid,
-  Stepper,
-  Step,
-  Button,
-  Container,
-  StepLabel,
-  makeStyles,
-} from "@material-ui/core";
-import { useReducer, useState, useEffect } from "react";
+import React from "react";
 import ShoppingCart from "../components/Forms/ShoppingCartForm";
 import CheckOutOrder from "../components/Forms/CheckoutOrderForm";
 import PriceForm from "../components/Forms/OrderSummaryForm";
 import BillingForm from "../components/Forms/BillingForm";
 import OverView from "../components/Forms/OverviewForm";
+import Grid from "@material-ui/core/Grid";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import StepLabel from "@material-ui/core/StepLabel";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const getSteps = [
   { label: "Shopping Bag" },
@@ -38,7 +36,7 @@ const stepStateCount = (state, action) => {
 const stepContent = (index, cart, store) => {
   switch (index) {
     case 0:
-      return <ShoppingCart cart={cart} store={store} title="Shopping Cart" />;
+      return <ShoppingCart cart={cart} store={store} title="Shopping Bag" />;
     case 1:
       return <CheckOutOrder cart={cart} store={store} />;
     default:
@@ -48,9 +46,8 @@ const stepContent = (index, cart, store) => {
 
 function Checkout({ cart, store }) {
   const classes = useStyles();
-  const [state, dispatch] = useReducer(stepStateCount, initalState);
-  const [input, setInput] = useState({});
-
+  const [state, dispatch] = React.useReducer(stepStateCount, initalState);
+  const [input, setInput] = React.useState({});
 
   // Stepper event handling
   const handleNext = () =>

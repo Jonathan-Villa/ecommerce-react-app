@@ -1,27 +1,26 @@
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  CardActions,
-  Button,
-  makeStyles,
-} from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import CardActions from "@material-ui/core/CardActions";
+import Button from "@material-ui/core/Button";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import Skeleton from "@material-ui/lab/Skeleton";
 import { Link } from "react-router-dom";
+
 function ProductCards({
   image,
   price,
-  handleDrawer,
   title,
   category,
-  handleAddCart,
-  handleProductLink
+  description,
+  handleProductLink,
 }) {
   const classes = useStyles();
 
   return (
     <Card elevation={0} className={classes.root}>
-      <Link to="/product" onClick={()=> handleProductLink(title, price, category, image)}>
+      {image ? (
         <CardMedia
           component="img"
           image={image}
@@ -29,7 +28,9 @@ function ProductCards({
           className={classes.media}
           title={title}
         />
-      </Link>
+      ) : (
+        <Skeleton variant="rect" height={200} width="100%" />
+      )}
 
       <CardContent className={classes.content}>
         <Typography
@@ -51,12 +52,14 @@ function ProductCards({
         <Button
           className={classes.btnAddCart}
           variant="text"
+          component={Link}
+          to="/product"
           size="small"
           onClick={(e) =>
-            handleAddCart(title, price, category, image) || handleDrawer()
+            handleProductLink(title, price, category, image, description)
           }
         >
-          Add to cart
+          VIEW ITEM
         </Button>
       </CardActions>
     </Card>
@@ -77,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   media: {
+    backgroundColor: "transparent",
     margin: "auto",
     height: "200px",
     maxWidth: "200px",

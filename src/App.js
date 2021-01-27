@@ -7,13 +7,41 @@ import { useContext } from "react";
 import { Context } from "./store/Store";
 import Checkout from "./pages/Checkout";
 import Product from "./pages/Product";
-
+import DrawerCart from "./components/Drawer/DrawerCart";
 function App() {
   const [state, dispatch] = useContext(Context);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
-  const handleProductLink = (title, price, category, image) => {
-    const selected = { title, price, category, image };
+  const handleProductLink = (title, price, category, image, description) => {
+    const selected = { title, price, category, image, description };
     localStorage.setItem("selectProduct", JSON.stringify(selected));
+  };
+
+  const handleCartItems = (title, price, category, image) => {
+    const copyList = [...state.cart];
+
+    const selected = { title, price, category, image };
+    selected.quantity = 1;
+
+    // find duplicate items
+    let check = copyList.find((item) => item.title === title);
+    // increment by 1 if duplicate found
+    if (check) {
+      check.quantity += 1;
+    } else {
+      copyList.push(selected);
+    }
+
+    dispatch({
+      cartQuantity: state.cartQuantity + 1,
+      type: "CART",
+      cart: copyList,
+      subTotal: state.subTotal + price,
+    });
+  };
+
+  const handleDrawerToggle = () => {
+    setOpenDrawer(!openDrawer);
   };
 
   return (
@@ -31,10 +59,19 @@ function App() {
         </Route>
 
         <Route path="/product">
-          <Product />
+          <Product
+            handleCart={handleCartItems}
+            handleDrawer={handleDrawerToggle}
+          />
         </Route>
       </Switch>
 
+      <DrawerCart
+        open={openDrawer}
+        items={state.cart}
+        handleClose={handleDrawerToggle}
+        handleCloseDrawer={handleDrawerToggle}
+      />
       <footer></footer>
     </div>
   );

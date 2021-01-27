@@ -1,5 +1,11 @@
-import { TabPanel, TabList, TabContext } from "@material-ui/lab";
-import { Tab, Grid, Toolbar, Fade, makeStyles } from "@material-ui/core";
+import TabPanel from "@material-ui/lab/TabPanel";
+import TabList from "@material-ui/lab/TabList";
+import TabContext from "@material-ui/lab/TabContext";
+import Tab from "@material-ui/core/Tab";
+import Grid from "@material-ui/core/Grid";
+import Toolbar from "@material-ui/core/Toolbar";
+import Fade from "@material-ui/core/Fade";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import ProductCard from "../Card/ProductCards";
 
 function ProductTabs({
@@ -14,7 +20,7 @@ function ProductTabs({
   handleDrawerToggle,
   setOpen,
   handleDialogContent,
-  handleProductLink
+  handleProductLink,
 }) {
   const classes = useStyles();
 
@@ -22,9 +28,9 @@ function ProductTabs({
     setValue(newValue);
   };
 
-  const handleClick = ()=> {
-    setOpen(true)
-  }
+  const handleClick = () => {
+    setOpen(true);
+  };
 
   return (
     <Toolbar className={classes.root}>
@@ -59,7 +65,7 @@ function ProductTabs({
                   md={4}
                 >
                   <ProductCard
-                  handleProductLink={handleProductLink}
+                    handleProductLink={handleProductLink}
                     handleDialogContent={handleDialogContent}
                     handleClick={handleClick}
                     handleDrawer={handleDrawerToggle}
@@ -67,6 +73,7 @@ function ProductTabs({
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
+                    description={m["description"]}
                     category={m["category"]}
                   />
                 </Grid>
@@ -94,6 +101,7 @@ function ProductTabs({
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
+                    description={m["description"]}
                     category={m["category"]}
                   />
                 </Grid>
@@ -121,6 +129,7 @@ function ProductTabs({
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
+                    description={m["description"]}
                     category={m["category"]}
                   />
                 </Grid>
@@ -148,6 +157,7 @@ function ProductTabs({
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
+                    description={m["description"]}
                     category={m["category"]}
                   />
                 </Grid>
@@ -175,6 +185,7 @@ function ProductTabs({
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
+                    description={m["description"]}
                     category={m["category"]}
                   />
                 </Grid>

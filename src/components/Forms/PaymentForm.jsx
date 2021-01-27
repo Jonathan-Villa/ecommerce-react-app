@@ -1,17 +1,14 @@
-import {
-  TextField,
-  Grid,
-  Container,
-  Typography,
-  Radio,
-  RadioGroup,
-  FormControl,
-  FormControlLabel,
-  Divider,
-  FormLabel,
-  ThemeProvider,
-  makeStyles
-} from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Divider from "@material-ui/core/Divider";
+import FormLabel from "@material-ui/core/FormControlLabel";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import Grid from "@material-ui/core/Grid";
 
 function PaymentForm() {
   const classes = useStyles();
@@ -27,14 +24,12 @@ function PaymentForm() {
             <FormLabel>Select a payment method</FormLabel>
 
             <RadioGroup>
-              <ThemeProvider>
-                <FormControlLabel
-                  className={classes.radControlLabel}
-                  value="creditCard"
-                  label="Credit Card"
-                  control={<Radio />}
-                ></FormControlLabel>
-              </ThemeProvider>
+              <FormControlLabel
+                className={classes.radControlLabel}
+                value="creditCard"
+                label="Credit Card"
+                control={<Radio />}
+              ></FormControlLabel>
 
               <FormControlLabel
                 className={classes.radControlLabel}

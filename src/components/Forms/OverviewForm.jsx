@@ -1,14 +1,12 @@
 import React from "react";
-import {
-  Grid,
-  Container,
-  Typography,
-  Divider,
-  makeStyles,
-} from "@material-ui/core";
 import ShoppingCart from "./ShoppingCartForm";
 import PriceForm from "./OrderSummaryForm";
 import PaymentForm from "./PaymentForm";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 function OverviewForm({ payload = [], cart, store }) {
   const classes = useStyles();

@@ -1,23 +1,19 @@
-import { useEffect, useState, useContext } from "react";
-import {
-  Grid,
-  Container,
-  Backdrop,
-  CircularProgress,
-  makeStyles,
-} from "@material-ui/core";
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
+import BackDrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Context } from "../store/Store";
 import Tabs from "../components/Tabs/ProductTabs";
-import DrawerCart from "../components/Drawer/DrawerCart";
 
-function Home({handleProductLink}) {
-  const [open, setOpen] = useState(false);
-  const [state, dispatch] = useContext(Context);
-  const [value, setValue] = useState("1");
-  const [openDrawer, setOpenDrawer] = useState(false);
+function Home({ handleProductLink }) {
+  const [open, setOpen] = React.useState(false);
+  const [state, dispatch] = React.useContext(Context);
+  const [value, setValue] = React.useState("1");
   const classes = useStyles();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchApi = async () => {
       setOpen(true);
       const data = await fetch("https://fakestoreapi.com/products");
@@ -31,47 +27,18 @@ function Home({handleProductLink}) {
     fetchApi().catch(() => dispatch({ type: "PRODUCTS_ERROR" }));
   }, [dispatch]);
 
-  const handleCartItems = (title, price, category, image) => {
-    const copyList = [...state.cart];
-
-    const selected = { title, price, category, image };
-    selected.quantity = 1;
-
-    // find duplicate items
-    let check = copyList.find((item) => item.title === title);
-    // increment by 1 if duplicate found
-    if (check) {
-      check.quantity += 1;
-    } else {
-      copyList.push(selected);
-    }
-
-    dispatch({
-      cartQuantity: state.cartQuantity + 1,
-      type: "CART",
-      cart: copyList,
-      subTotal: state.subTotal + price,
-    });
-  };
-
-  const handleDrawerToggle = () => {
-    setOpenDrawer(!openDrawer);
-  };
-
   return (
     <Container className={classes.main} maxWidth="lg">
       <Grid className={classes.homeWrapper} container>
         {state.isFetchLoading === true ? (
-          <Backdrop className={classes.backDrop} open={open}>
+          <BackDrop className={classes.backDrop} open={open}>
             <CircularProgress color="inherit" />
-          </Backdrop>
+          </BackDrop>
         ) : (
           <Tabs
             handleProductLink={handleProductLink}
             value={value}
             setValue={setValue}
-            handleDrawerToggle={handleDrawerToggle}
-            handleCartItems={handleCartItems}
             menProduct={state.men.items}
             womenProduct={state.women.items}
             jewelery={state.jewelery.items}
@@ -80,11 +47,6 @@ function Home({handleProductLink}) {
           />
         )}
       </Grid>
-      <DrawerCart
-        open={openDrawer}
-        items={state.cart}
-        handleClose={handleDrawerToggle}
-      />
     </Container>
   );
 }

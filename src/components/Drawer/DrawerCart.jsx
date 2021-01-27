@@ -1,19 +1,17 @@
 import React from "react";
-import {
-  Drawer,
-  List,
-  ListItem,
-  Typography,
-  Divider,
-  Grid,
-  IconButton,
-  Button,
-  makeStyles,
-} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import IconButton from "@material-ui/core/IconButton";
+import Drawer from "@material-ui/core/Drawer";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { MdClose } from "react-icons/md";
 
-function DrawerCart({ items, open, handleClose }) {
+function DrawerCart({ items, open, handleClose, handleCloseDrawer }) {
   const classes = useStyles();
 
   return (
@@ -63,7 +61,12 @@ function DrawerCart({ items, open, handleClose }) {
           ))}
         </List>
 
-        <Button className={classes.btnViewCart} component={Link} to="/cart">
+        <Button
+          className={classes.btnViewCart}
+          onClick={handleCloseDrawer}
+          component={Link}
+          to="/cart"
+        >
           View Cart
         </Button>
       </Drawer>

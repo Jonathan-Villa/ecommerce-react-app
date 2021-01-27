@@ -1,10 +1,8 @@
-import {
-  Typography,
-  Grid,
-  Divider,
-  Container,
-  makeStyles,
-} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 function ShoppingCart({ cart = [], store, title }) {
   const classes = useStyles();
