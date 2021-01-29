@@ -95,9 +95,11 @@ function ProductTabs({
                   md={4}
                 >
                   <ProductCard
+                    handleProductLink={handleProductLink}
+                    handleDialogContent={handleDialogContent}
+                    handleClick={handleClick}
                     handleDrawer={handleDrawerToggle}
                     handleAddCart={handleCartItems}
-                    handleClick={handleClick}
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
@@ -123,9 +125,11 @@ function ProductTabs({
                   md={4}
                 >
                   <ProductCard
+                    handleProductLink={handleProductLink}
+                    handleDialogContent={handleDialogContent}
+                    handleClick={handleClick}
                     handleDrawer={handleDrawerToggle}
                     handleAddCart={handleCartItems}
-                    handleClick={handleClick}
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
@@ -151,9 +155,11 @@ function ProductTabs({
                   md={4}
                 >
                   <ProductCard
+                    handleProductLink={handleProductLink}
+                    handleDialogContent={handleDialogContent}
+                    handleClick={handleClick}
                     handleDrawer={handleDrawerToggle}
                     handleAddCart={handleCartItems}
-                    handleClick={handleClick}
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
@@ -179,9 +185,11 @@ function ProductTabs({
                   md={4}
                 >
                   <ProductCard
+                    handleProductLink={handleProductLink}
+                    handleDialogContent={handleDialogContent}
+                    handleClick={handleClick}
                     handleDrawer={handleDrawerToggle}
                     handleAddCart={handleCartItems}
-                    handleClick={handleClick}
                     price={m["price"]}
                     title={m["title"]}
                     image={m["image"]}
