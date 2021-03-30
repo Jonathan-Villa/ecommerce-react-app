@@ -7,43 +7,13 @@ import Menu from "@material-ui/core/Menu";
 import Typography from "@material-ui/core/Typography";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Badge from "@material-ui/core/Badge";
+import Button from "@material-ui/core/Button";
 import { ShoppingCart } from "@material-ui/icons";
 import { Link, useLocation } from "react-router-dom";
 
 const PrimarySearchAppBar = ({ totalItems }) => {
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const classes = useStyles();
   const location = useLocation();
-
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
-  const mobileMenuId = "primary-search-account-menu-mobile";
-
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton
-          component={Link}
-          to="/cart"
-          aria-label="Show cart items"
-          color="inherit"
-        >
-          <Badge badgeContent={totalItems} color="secondary">
-            <ShoppingCart />
-          </Badge>
-        </IconButton>
-        <p>Cart</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
     <>
@@ -61,6 +31,10 @@ const PrimarySearchAppBar = ({ totalItems }) => {
           <div className={classes.grow} />
           {location.pathname === "/cart" ? null : (
             <div className={classes.button}>
+              <Button variant="text" color="primary" >
+                Sign In
+              </Button>
+
               <IconButton
                 component={Link}
                 to="/cart"
@@ -75,7 +49,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
           )}
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
+
     </>
   );
 };
