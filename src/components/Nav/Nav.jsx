@@ -9,11 +9,17 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import { ShoppingCart } from "@material-ui/icons";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 
 const PrimarySearchAppBar = ({ totalItems }) => {
   const classes = useStyles();
   const location = useLocation();
+  const history = useHistory()
+
+  const handleLoginClick = (e)=> {
+        history.push("/login")
+  }
+
 
   return (
     <>
@@ -21,7 +27,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
         <Toolbar>
           <Typography
             component={Link}
-            to="/"
+            to="/home"
             variant="h6"
             className={classes.title}
             color="inherit"
@@ -31,7 +37,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
           <div className={classes.grow} />
           {location.pathname === "/cart" ? null : (
             <div className={classes.button}>
-              <Button variant="text" color="primary" >
+              <Button onClick={handleLoginClick} variant="text" color="primary" >
                 Sign In
               </Button>
 
